@@ -1,0 +1,354 @@
+<!DOCTYPE html><html lang="zh-tw"><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>HTTP Header 安全性 - vscan2</title><meta name="description" content="HTTP Header 範例 HTTP Header 可視為網站與客戶在連線時的橋溝通梁，也就是遵照 HTTP 的協議，利用 Server 端的參數來告知客戶端瀏覽器需遵守其遊戲規則，你才能跟我進行連線溝通與確認是否繼續進行下一步動作，所以當客戶端發出需求時，Server 端可藉由回應來確認連線的安全性需求。 近來跟客戶討論網站安全性時，常會遇到程式碼修補上的困難，不外乎還需要開發人員的調整及測試時間等問題，其實可以先進行 HTTP Header 的安全性設定。 就如 OWASP TOP 10 與 SANS/CWE TOP 25 所列弱點，常見的 XSS(Cross-Site Scripting)與 CSRF(Cross-Site Requset Forgery)等弱點都可藉由調整 HTTP Header 來達成初步的防禦效果! OWASP 就有針對此發表了相關說明。 HTTP Header 安全設定 其中 HPKP 可綁定憑證，限定客戶端只能使用 Server 提供的憑證來連線，中間若有經過 Proxy或第三方憑證被置換時，連線都會無效！這專門在防範中間人攻擊(Man-in-the-Middle Attack)，也就是常會有第三方或駭客想藉由置換憑證來修改或窺看SSL加密的通訊內容，但透過加入 HPKP&hellip;"><meta name="generator" content="Publii Open-Source CMS for Static Site"><link rel="canonical" href="https://may95429.github.io/vscan2/blog/http-header-an-quan-xing/"><link rel="alternate" type="application/atom+xml" href="https://may95429.github.io/vscan2/feed.xml" title="vscan2 - RSS"><link rel="alternate" type="application/json" href="https://may95429.github.io/vscan2/feed.json" title="vscan2 - JSON"><meta property="og:title" content="HTTP Header 安全性"><meta property="og:image" content="https://may95429.github.io/vscan2/media/website/v-scan-01-2.png"><meta property="og:image:width" content="137"><meta property="og:image:height" content="49"><meta property="og:site_name" content="vscan2"><meta property="og:description" content="HTTP Header 範例 HTTP Header 可視為網站與客戶在連線時的橋溝通梁，也就是遵照 HTTP 的協議，利用 Server 端的參數來告知客戶端瀏覽器需遵守其遊戲規則，你才能跟我進行連線溝通與確認是否繼續進行下一步動作，所以當客戶端發出需求時，Server 端可藉由回應來確認連線的安全性需求。 近來跟客戶討論網站安全性時，常會遇到程式碼修補上的困難，不外乎還需要開發人員的調整及測試時間等問題，其實可以先進行 HTTP Header 的安全性設定。 就如 OWASP TOP 10 與 SANS/CWE TOP 25 所列弱點，常見的 XSS(Cross-Site Scripting)與 CSRF(Cross-Site Requset Forgery)等弱點都可藉由調整 HTTP Header 來達成初步的防禦效果! OWASP 就有針對此發表了相關說明。 HTTP Header 安全設定 其中 HPKP 可綁定憑證，限定客戶端只能使用 Server 提供的憑證來連線，中間若有經過 Proxy或第三方憑證被置換時，連線都會無效！這專門在防範中間人攻擊(Man-in-the-Middle Attack)，也就是常會有第三方或駭客想藉由置換憑證來修改或窺看SSL加密的通訊內容，但透過加入 HPKP&hellip;"><meta property="og:url" content="https://may95429.github.io/vscan2/blog/http-header-an-quan-xing/"><meta property="og:type" content="article"><link rel="stylesheet" href="https://may95429.github.io/vscan2/assets/css/style.css?v=ff57cbd3c15275fa71788405d4b2ae31"><script type="application/ld+json">{"@context":"http://schema.org","@type":"Article","mainEntityOfPage":{"@type":"WebPage","@id":"https://may95429.github.io/vscan2/blog/http-header-an-quan-xing/"},"headline":"HTTP Header 安全性","datePublished":"2017-03-30T22:20+08:00","dateModified":"2026-03-04T18:30+08:00","image":{"@type":"ImageObject","url":"https://may95429.github.io/vscan2/media/website/v-scan-01-2.png","height":49,"width":137},"description":"HTTP Header 範例 HTTP Header 可視為網站與客戶在連線時的橋溝通梁，也就是遵照 HTTP 的協議，利用 Server 端的參數來告知客戶端瀏覽器需遵守其遊戲規則，你才能跟我進行連線溝通與確認是否繼續進行下一步動作，所以當客戶端發出需求時，Server 端可藉由回應來確認連線的安全性需求。 近來跟客戶討論網站安全性時，常會遇到程式碼修補上的困難，不外乎還需要開發人員的調整及測試時間等問題，其實可以先進行 HTTP Header 的安全性設定。 就如 OWASP TOP 10 與 SANS/CWE TOP 25 所列弱點，常見的 XSS(Cross-Site Scripting)與 CSRF(Cross-Site Requset Forgery)等弱點都可藉由調整 HTTP Header 來達成初步的防禦效果! OWASP 就有針對此發表了相關說明。 HTTP Header 安全設定 其中 HPKP 可綁定憑證，限定客戶端只能使用 Server 提供的憑證來連線，中間若有經過 Proxy或第三方憑證被置換時，連線都會無效！這專門在防範中間人攻擊(Man-in-the-Middle Attack)，也就是常會有第三方或駭客想藉由置換憑證來修改或窺看SSL加密的通訊內容，但透過加入 HPKP&hellip;","author":{"@type":"Person","name":"vscan","url":"https://may95429.github.io/vscan2/authors/vscan/"},"publisher":{"@type":"Organization","name":"vscan","logo":{"@type":"ImageObject","url":"https://may95429.github.io/vscan2/media/website/v-scan-01-2.png","height":49,"width":137}}}</script><noscript><style>img[loading] {
+                    opacity: 1;
+                }</style></noscript><style>/* ✅ 1) 直接改主題用的色彩變數（最穩） */
+:root{
+  --color: #ffffff;           /* topbar 背景色 */
+}
+
+/* 保險：如果主題把背景設在 topbar__inner，就一起蓋 */
+header.topbar,
+header.topbar .topbar__inner{
+  background: #ffffff !important;
+}
+
+/*選單文字變大*/
+.navbar__menu a {
+font-size: 20px !important;
+font-weight: 500 !important;
+}
+
+/* 1️⃣ 預設選單文字 */
+.navbar .navbar__menu > li > a,
+.navbar .navbar__menu > li > span {
+    color: #333 !important;
+    background: transparent !important;
+}
+
+/* 2️⃣ 移除 active overlay */
+.navbar .navbar__menu > li.active > a,
+.navbar .navbar__menu > li.active > span,
+.navbar .navbar__menu > li.active-parent > a {
+    background: transparent !important;
+}
+
+/* 3️⃣ 滑過效果 */
+.navbar .navbar__menu > li > a:hover,
+.navbar .navbar__menu > li > span:hover {
+    color:#25A9E0 !important;
+}
+
+/* 4️⃣ 目前頁面 active */
+.navbar .navbar__menu > li.active > a {
+    color:#25A9E0 !important;
+}
+
+/* 5️⃣ submenu hover */
+.navbar .navbar__menu > li.has-submenu:hover > a {
+    color:#25A9E0 !important;
+}
+
+/*選單下有留白*/    
+header.topbar{
+    position: relative !important;
+    padding-bottom: 25px;
+}
+  
+  
+/* header 改為上下排列 */
+.topbar__inner {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+}
+
+/* logo 置中 */
+.topbar__inner .logo {
+    margin-bottom: 10px !important;
+}
+
+/* menu 置中 */
+.navbar {
+    width: 100% !important;
+    display: flex !important;
+    justify-content: center !important;
+}
+
+/* menu item 間距 */
+.navbar__menu {
+    display: flex !important;
+    gap: 30px !important;
+    justify-content: center !important;
+}
+    
+/* 移除 header 與內容之間的灰色區塊 */
+.u-header.content__header{
+    display:none !important;
+}
+
+.content{
+    margin-top:0 !important;
+    padding-top:0 !important;
+}
+
+.vscan-hero__overlay{
+    background: rgba(0,0,0,0.35) !important;
+}
+/* header 高度調整 */
+.topbar {
+    padding-top: 15px !important;
+    padding-bottom: 10px !important;
+}</style></head><body class="post-template"><style>/* =========================================================
+   TechNews：只讓 Blog(列表) 有 sidebar
+   -> Page / Post 取消 sidebar + 修正偏移 + 修正 footer
+========================================================= */
+
+/* 1) Page / Post：直接隱藏 sidebar */
+body.page-template .sidebar,
+body.post-template .sidebar{
+  display: none !important;
+}
+
+/* 2) Page / Post：把兩欄 grid 改成一欄，避免主欄卡在第2欄造成左邊大留白 */
+body.page-template .main-content,
+body.post-template .main-content{
+  grid-template-columns: 1fr !important;
+  grid-column-gap: 0 !important;
+  max-width: 100% !important; /* 減少左右邊距 */
+  margin-left: auto !important;
+  margin-right: auto !important;
+  padding-left: 20px !important;
+  padding-right: 20px !important;
+}
+
+/* 3) Page / Post：主內容強制吃滿整列（覆蓋 theme 在大螢幕時給的 grid-column: 2/3） */
+body.page-template main,
+body.post-template main{
+  grid-column: 1 / -1 !important;
+  max-width: 100% !important;
+  margin: 0 auto !important;
+}
+
+/* 4) Page / Post：把內容區塊可能被 theme 加的左右 margin 清掉（避免看起來又偏） */
+body.page-template .content,
+body.post-template .content,
+body.page-template .content__entry,
+body.post-template .content__entry{
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+}
+
+/* 5) Page / Post：footer 強制回到正常全寬、不要被當成側欄寬度、也不要跑到右邊 */
+body.page-template .footer,
+body.post-template .footer{
+  width: 100% !important;
+  max-width: none !important;
+  margin: 0 !important;
+  grid-column: 1 / -1 !important;
+  clear: both;
+}
+
+/* 6) （保險）如果 TechNews 用 CSS 變數控制欄寬，Page / Post 也一起歸零 */
+body.page-template,
+body.post-template{
+  --sidebar-width: 0;
+  --main-col-width: 100%;
+}
+
+    
+.main-content{
+    margin-top：0px !important;  
+}</style><style>/*網站弱點服務*/
+.service-grid {
+    display: grid !important;  /* 強制設定 grid */
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)) !important; /* 設定自動調整列數 */
+    gap: 30px !important;
+    margin-bottom: 50px !important;
+}
+
+.service-item {
+    background-color: #f9f9f9 !important;
+    padding: 20px !important;
+    border-radius: 8px !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1) !important;
+    text-align: center !important;
+}
+
+.service-number {
+    font-size: 24px !important;
+    font-weight: bold !important;
+    color: #1a73e8 !important;
+    display: block !important;
+    margin-bottom: 10px !important;
+}
+
+.service-item h4 {
+    font-size: 18px !important;
+    font-weight: 600 !important;
+    margin-bottom: 10px !important;
+}
+
+.service-item p {
+    font-size: 14px !important;
+    line-height: 1.5 !important;
+    color: #555 !important;
+}
+
+/* 圖片自適應調整 */
+.wpb_wrapper img {
+    max-width: 100% !important;
+    height: auto !important;
+}</style><style>/*關於我們*/
+  :root {
+    --vscan-max-width: 1200px !important; /* 修正最大寬度 */
+  }
+
+  .vscan-main-wrapper {
+    font-family: "Microsoft JhengHei", sans-serif !important;
+    color: #222 !important;
+    font-size: 18px !important;
+    line-height: 1.6 !important;
+    width: 100% !important;
+    overflow-x: hidden !important;
+    padding: 0 20px !important; /* 內邊距調整，減少空白 */
+    box-sizing: border-box !important;
+  }
+  /* --- 2. 核心容器設定 --- */
+  .vscan-about-container,
+  .vscan-form-wrapper {
+    max-width: var(--vscan-max-width) !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    padding: 0 !important;
+    box-sizing: border-box !important;
+  }
+
+  /* --- 3. 公司介紹區 (左圖右文) --- */
+  .vscan-about-container {
+    display: flex !important;
+    align-items: center;
+    justify-content: flex-start !important; /* 讓內容對齊左側 */
+    gap: 30px !important;
+    margin-bottom: 50px !important;
+  }
+  .vscan-about-image {
+    flex: 0 0 50% !important; /* 設定圖片佔用一半的寬度 */
+  }
+  .vscan-about-image img {
+    width: 100% !important; /* 確保圖片自適應寬度 */
+    height: auto !important;
+    display: block !important;
+    max-width: 100% !important; /* 防止圖片過大 */
+  }
+
+  .vscan-about-text {
+    flex: 1 !important; /* 讓文字區域占據剩餘空間 */
+  }
+
+  /* 強制修正：將右側介紹區塊內的所有文字標籤都設為純黑 */
+  .vscan-about-text,
+  .vscan-about-text p,
+  .vscan-about-text span {
+    color: #000000 !important;
+    font-size: 18px !important;
+    font-weight: normal !important;
+    line-height: 1.8 !important;
+  }
+    /* --- 4. 聯繫表單區優化 --- */
+  .vscan-form-wrapper {
+    text-align: left !important;
+    margin-bottom: 50px !important; /* 調整表單區的下邊距 */
+    z-index: 2 !important; /* 確保表單區域不會被遮擋 */
+  }
+
+  /* 表單上方導引文字 (粗體+黑色) */
+  .vscan-intro-text {
+    font-size: 18px !important;
+    color: #000000 !important;
+    font-weight: bold !important;
+    margin-bottom: 30px !important;
+  }
+
+  /* Email 連結 (粗體) */
+  .vscan-email-link {
+    color: #0088cc !important;
+    text-decoration: none !important;
+    font-size: 20px !important;
+    font-weight: bold !important;
+  }
+
+  /* 欄位標題 (Label) */
+  .vscan-label {
+    display: block !important;
+    font-size: 16px !important;
+    color: #444 !important;
+    font-weight: bold !important;
+    margin-bottom: 8px !important;
+  }
+
+  /* 輸入欄位高度優化 */
+  .vscan-input-blue,
+  .vscan-textarea-blue {
+    width: 100% !important;
+    padding: 10px 12px !important;
+    background-color: #e8f0fe !important;
+    border: 1px solid #d1e1f5 !important;
+    font-size: 16px !important;
+    margin-bottom: 20px !important;
+    border-radius: 4px !important;
+    box-sizing: border-box !important;
+  }
+    .vscan-submit-btn {
+    background-color: #00acc1 !important;
+    color: white !important;
+    padding: 12px 70px !important;
+    font-size: 18px !important;
+    font-weight: bold !important;
+    border: none !important;
+    border-radius: 5px !important;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+
+  .vscan-submit-btn:hover {
+    background-color: #008b9c !important;
+  }
+
+  /* --- 5. 響應式微調 (RWD) --- */
+  @media (max-width: 767px) {
+    .vscan-about-container {
+      flex-direction: column !important; /* 讓圖片和文字垂直排列 */
+      gap: 20px !important;
+    }
+    .vscan-about-image {
+      flex: 0 0 auto !important;
+      max-width: 100% !important;
+    }
+    .vscan-about-text {
+      font-size: 17px !important;
+    }
+    .vscan-email-link {
+      font-size: 18px !important;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .vscan-submit-btn {
+      width: 100%;
+      padding: 12px 0 !important;
+    }
+  }</style><style>/* 橢圓形圖片 */
+.circular-image {
+    width:900 px !important; /* 設定圖片寬度 */
+    height: 400px !important; /* 設定圖片高度，確保圖片保持圓形 */
+    object-fit: cover !important; /* 確保圖片保持自適應，並填滿圓形 */
+}</style><div class="container js-container"><nav class="menu"><ul class="navbar__menu"><li><a href="https://may95429.github.io/vscan2/" target="_self">VSCAN</a></li><li class="has-submenu"><a href="https://may95429.github.io/vscan2/website-security/" target="_self">服務內容</a><ul class="navbar__submenu"><li><a href="https://may95429.github.io/vscan2/website-security/" target="_self">網站弱點掃描</a></li><li><a href="https://may95429.github.io/vscan2/program-security/" target="_self">程式碼弱點掃描</a></li></ul></li><li><a href="https://may95429.github.io/vscan2/blog/" target="_self">最新消息</a></li><li><a href="https://may95429.github.io/vscan2/contact/" target="_self">關於我們</a></li></ul></nav><div class="container__content"><header class="top"><div class="top__item"><a class="logo" href="https://may95429.github.io/vscan2/"><img src="https://may95429.github.io/vscan2/media/website/v-scan-01-2.png" alt="vscan2" width="137" height="49"></a></div><div class="top__item top__item--right"><button class="menu-toggle js-menu-toggle" aria-label="Menu" aria-expanded="false"><span class="menu-toggle-box"><span class="menu-toggle-inner">Menu</span></span></button></div></header><main class="main post"><article class="content"><div class="main__left"><header><h1>HTTP Header 安全性</h1><p><time datetime="2017-03-30T22:20">三月 30, 2017 </time>by <a href="https://may95429.github.io/vscan2/authors/vscan/" rel="author" title="vscan">vscan</a></p></header></div><div class="main__right"><div class="content__entry"><figure class="post__image wp-image-2340"><img loading="lazy" title="HTTP Header" src="https://may95429.github.io/vscan2/media/posts/1/擷取.png" alt="HTTP Header to Google" width="509" height="312" sizes="(min-width: 1500px) calc(7.87vw + 610px), (min-width: 900px) calc(44.48vw + 68px), (min-width: 780px) calc(8vw + 604px), calc(84.35vw + 23px)" srcset="https://may95429.github.io/vscan2/media/posts/1/responsive/擷取-xs.png 300w, https://may95429.github.io/vscan2/media/posts/1/responsive/擷取-sm.png 480w, https://may95429.github.io/vscan2/media/posts/1/responsive/擷取-md.png 768w"></figure><p>HTTP Header 範例  </p><p>HTTP Header 可視為網站與客戶在連線時的橋溝通梁，也就是遵照 HTTP 的協議，利用 Server 端的參數來告知客戶端瀏覽器需遵守其遊戲規則，你才能跟我進行連線溝通與確認是否繼續進行下一步動作，所以當客戶端發出需求時，Server 端可藉由回應來確認連線的安全性需求。</p><p>近來跟客戶討論網站安全性時，常會遇到程式碼修補上的困難，不外乎還需要開發人員的調整及測試時間等問題，其實可以先進行 HTTP Header 的安全性設定。 就如 OWASP TOP 10 與 SANS/CWE TOP 25 所列弱點，常見的 <a href="https://may95429.github.io/vscan2/blog/cross-site-scripting/" target="_blank" rel="noopener noreferrer">XSS(Cross-Site Scripting)</a>與 CSRF(Cross-Site Requset Forgery)等弱點都可藉由調整 HTTP Header 來達成初步的防禦效果! OWASP 就有針對此發表了相關說明。</p><p><strong>HTTP Header 安全設定</strong></p><ul><li style="font-weight: 400; text-align: left;"><a href="https://www.owasp.org/index.php/OWASP_Secure_Headers_Project#hsts_bp" target="_blank" rel="noopener"><span style="fontfont-weight: 400; font-size: medium;">HTTP Strict Transport Security (HSTS)</span></a></li><li style="font-weight: 400; text-align: left;"><a href="https://www.owasp.org/index.php/OWASP_Secure_Headers_Project#hpkp_bp" target="_blank" rel="noopener"><span style="font-weight: 400; font-size: medium;">Public Key Pinning Extension for HTTP (HPKP)</span></a></li><li style="font-weight: 400; text-align: left;"><a href="https://www.owasp.org/index.php/OWASP_Secure_Headers_Project#xfo_bp" target="_blank" rel="noopener"><span style="font-weight: 400; font-size: medium;">X-Frame-Options</span></a></li><li style="font-weight: 400; text-align: left;"><a href="https://www.owasp.org/index.php/OWASP_Secure_Headers_Project#xxxsp_bp" target="_blank" rel="noopener"><span style="font-weight: 400; font-size: medium;">X-XSS-Protection</span></a></li><li style="font-weight: 400; text-align: left;"><a href="https://www.owasp.org/index.php/OWASP_Secure_Headers_Project#xcto_bp" target="_blank" rel="noopener"><span style="font-weight: 400; font-size: medium;">X-Content-Type-Options</span></a></li><li style="font-weight: 400; text-align: left;"><a href="https://www.owasp.org/index.php/OWASP_Secure_Headers_Project#csp_bp" target="_blank" rel="noopener"><span style="font-weight: 400; font-size: medium;">Content-Security-Policy</span></a></li><li style="font-weight: 400; text-align: left;"><a href="https://www.owasp.org/index.php/OWASP_Secure_Headers_Project#xpcdp_bp" target="_blank" rel="noopener"><span style="font-weight: 400; font-size: medium;">X-Permitted-Cross-Domain-Policies</span></a></li><li style="font-weight: 400; text-align: left;"><a href="https://www.owasp.org/index.php/OWASP_Secure_Headers_Project#rp_bp" target="_blank" rel="noopener"><span style="font-weight: 400; font-size: medium;">Referrer-Policy</span></a></li></ul><p>其中 HPKP 可綁定憑證，限定客戶端只能使用 Server 提供的憑證來連線，中間若有經過 Proxy或第三方憑證被置換時，連線都會無效！這專門在防範中間人攻擊(Man-in-the-Middle Attack)，也就是常會有第三方或駭客想藉由置換憑證來修改或窺看SSL加密的通訊內容，但透過加入 HPKP 的方式，將憑證的資訊綁入 Header，這樣客戶在連線時就可以比對是否為正確的憑證，才能放心的進行安全連線。</p><p>X-Frame-Options 可限定網域連線存取，也就是防範釣魚網站或 Clickjacking 等攻擊，藉由限制來源網域是否符合同源政策或是允許的白名單才可進行存取，避免有心人透過 iframe 或蓋台等方式來騙取受害者點擊造假的網站或連結，導致客戶機密資訊被竊取。</p><p>其他關於防範 XSS 攻擊的有 Content-Security-Policy 及 X-XSS-Protection，另外在設定 Cookies 時可帶入 Httponly 參數，限制只能透過 HTTP 方式取得 Cookie，若利用 Script 方式會被拒絕，一樣可以達成防禦的效果!  </p><p> </p><p>利用調整 HTTP Header 的安全性，可謂有事半功倍的成效，但是這終究只是第一線的防禦並只能抵擋部份攻擊，根據資安的縱深防禦理論，須藉由定期的弱點掃描檢視網站，網站伺服器及程式碼持續性的安全性調整及更新，才是網站能長久安全的不二法門。</p><footer><div class="content__tag-share"><ul class="content__tag"><li><a href="https://may95429.github.io/vscan2/tags/cross-site-scripting/">Cross-Site Scripting</a></li><li><a href="https://may95429.github.io/vscan2/tags/csrf/">CSRF</a></li><li><a href="https://may95429.github.io/vscan2/tags/http-header/">HTTP Header</a></li></ul><div class="content__share"></div></div><div class="content__bio"><h3><a href="https://may95429.github.io/vscan2/authors/vscan/" title="vscan">vscan</a></h3></div></footer></div></div></article><div class="main__right main__right--bottom"></div></main><footer class="footer"><div class="footer__copyright">Powered by Publii</div></footer></div></div><script defer="defer" src="https://may95429.github.io/vscan2/assets/js/scripts.min.js?v=1ea8317abae2e05fa2a65ed7bbff7ba7"></script><script>var images = document.querySelectorAll('img[loading]');
+   
+           for (var i = 0; i < images.length; i++) {
+               if (images[i].complete) {
+                   images[i].classList.add('is-loaded');
+               } else {
+                   images[i].addEventListener('load', function () {
+                       this.classList.add('is-loaded');
+                   }, false);
+               }
+           }</script></body></html>

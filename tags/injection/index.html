@@ -1,0 +1,354 @@
+<!DOCTYPE html><html lang="zh-tw"><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Tag: Injection - vscan2</title><meta name="robots" content="noindex, follow"><meta name="generator" content="Publii Open-Source CMS for Static Site"><link rel="alternate" type="application/atom+xml" href="https://may95429.github.io/vscan2/feed.xml" title="vscan2 - RSS"><link rel="alternate" type="application/json" href="https://may95429.github.io/vscan2/feed.json" title="vscan2 - JSON"><meta property="og:title" content="Injection"><meta property="og:image" content="https://may95429.github.io/vscan2/media/website/v-scan-01-2.png"><meta property="og:image:width" content="137"><meta property="og:image:height" content="49"><meta property="og:site_name" content="vscan2"><meta property="og:description" content=""><meta property="og:url" content="https://may95429.github.io/vscan2/tags/injection/"><meta property="og:type" content="website"><link rel="stylesheet" href="https://may95429.github.io/vscan2/assets/css/style.css?v=ff57cbd3c15275fa71788405d4b2ae31"><script type="application/ld+json">{"@context":"http://schema.org","@type":"Organization","name":"vscan2","logo":"https://may95429.github.io/vscan2/media/website/v-scan-01-2.png","url":"https://may95429.github.io/vscan2/"}</script><noscript><style>img[loading] {
+                    opacity: 1;
+                }</style></noscript><style>/* ✅ 1) 直接改主題用的色彩變數（最穩） */
+:root{
+  --color: #ffffff;           /* topbar 背景色 */
+}
+
+/* 保險：如果主題把背景設在 topbar__inner，就一起蓋 */
+header.topbar,
+header.topbar .topbar__inner{
+  background: #ffffff !important;
+}
+
+/*選單文字變大*/
+.navbar__menu a {
+font-size: 20px !important;
+font-weight: 500 !important;
+}
+
+/* 1️⃣ 預設選單文字 */
+.navbar .navbar__menu > li > a,
+.navbar .navbar__menu > li > span {
+    color: #333 !important;
+    background: transparent !important;
+}
+
+/* 2️⃣ 移除 active overlay */
+.navbar .navbar__menu > li.active > a,
+.navbar .navbar__menu > li.active > span,
+.navbar .navbar__menu > li.active-parent > a {
+    background: transparent !important;
+}
+
+/* 3️⃣ 滑過效果 */
+.navbar .navbar__menu > li > a:hover,
+.navbar .navbar__menu > li > span:hover {
+    color:#25A9E0 !important;
+}
+
+/* 4️⃣ 目前頁面 active */
+.navbar .navbar__menu > li.active > a {
+    color:#25A9E0 !important;
+}
+
+/* 5️⃣ submenu hover */
+.navbar .navbar__menu > li.has-submenu:hover > a {
+    color:#25A9E0 !important;
+}
+
+/*選單下有留白*/    
+header.topbar{
+    position: relative !important;
+    padding-bottom: 25px;
+}
+  
+  
+/* header 改為上下排列 */
+.topbar__inner {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+}
+
+/* logo 置中 */
+.topbar__inner .logo {
+    margin-bottom: 10px !important;
+}
+
+/* menu 置中 */
+.navbar {
+    width: 100% !important;
+    display: flex !important;
+    justify-content: center !important;
+}
+
+/* menu item 間距 */
+.navbar__menu {
+    display: flex !important;
+    gap: 30px !important;
+    justify-content: center !important;
+}
+    
+/* 移除 header 與內容之間的灰色區塊 */
+.u-header.content__header{
+    display:none !important;
+}
+
+.content{
+    margin-top:0 !important;
+    padding-top:0 !important;
+}
+
+.vscan-hero__overlay{
+    background: rgba(0,0,0,0.35) !important;
+}
+/* header 高度調整 */
+.topbar {
+    padding-top: 15px !important;
+    padding-bottom: 10px !important;
+}</style></head><body class="tag-template"><style>/* =========================================================
+   TechNews：只讓 Blog(列表) 有 sidebar
+   -> Page / Post 取消 sidebar + 修正偏移 + 修正 footer
+========================================================= */
+
+/* 1) Page / Post：直接隱藏 sidebar */
+body.page-template .sidebar,
+body.post-template .sidebar{
+  display: none !important;
+}
+
+/* 2) Page / Post：把兩欄 grid 改成一欄，避免主欄卡在第2欄造成左邊大留白 */
+body.page-template .main-content,
+body.post-template .main-content{
+  grid-template-columns: 1fr !important;
+  grid-column-gap: 0 !important;
+  max-width: 100% !important; /* 減少左右邊距 */
+  margin-left: auto !important;
+  margin-right: auto !important;
+  padding-left: 20px !important;
+  padding-right: 20px !important;
+}
+
+/* 3) Page / Post：主內容強制吃滿整列（覆蓋 theme 在大螢幕時給的 grid-column: 2/3） */
+body.page-template main,
+body.post-template main{
+  grid-column: 1 / -1 !important;
+  max-width: 100% !important;
+  margin: 0 auto !important;
+}
+
+/* 4) Page / Post：把內容區塊可能被 theme 加的左右 margin 清掉（避免看起來又偏） */
+body.page-template .content,
+body.post-template .content,
+body.page-template .content__entry,
+body.post-template .content__entry{
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+}
+
+/* 5) Page / Post：footer 強制回到正常全寬、不要被當成側欄寬度、也不要跑到右邊 */
+body.page-template .footer,
+body.post-template .footer{
+  width: 100% !important;
+  max-width: none !important;
+  margin: 0 !important;
+  grid-column: 1 / -1 !important;
+  clear: both;
+}
+
+/* 6) （保險）如果 TechNews 用 CSS 變數控制欄寬，Page / Post 也一起歸零 */
+body.page-template,
+body.post-template{
+  --sidebar-width: 0;
+  --main-col-width: 100%;
+}
+
+    
+.main-content{
+    margin-top：0px !important;  
+}</style><style>/*網站弱點服務*/
+.service-grid {
+    display: grid !important;  /* 強制設定 grid */
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)) !important; /* 設定自動調整列數 */
+    gap: 30px !important;
+    margin-bottom: 50px !important;
+}
+
+.service-item {
+    background-color: #f9f9f9 !important;
+    padding: 20px !important;
+    border-radius: 8px !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1) !important;
+    text-align: center !important;
+}
+
+.service-number {
+    font-size: 24px !important;
+    font-weight: bold !important;
+    color: #1a73e8 !important;
+    display: block !important;
+    margin-bottom: 10px !important;
+}
+
+.service-item h4 {
+    font-size: 18px !important;
+    font-weight: 600 !important;
+    margin-bottom: 10px !important;
+}
+
+.service-item p {
+    font-size: 14px !important;
+    line-height: 1.5 !important;
+    color: #555 !important;
+}
+
+/* 圖片自適應調整 */
+.wpb_wrapper img {
+    max-width: 100% !important;
+    height: auto !important;
+}</style><style>/*關於我們*/
+  :root {
+    --vscan-max-width: 1200px !important; /* 修正最大寬度 */
+  }
+
+  .vscan-main-wrapper {
+    font-family: "Microsoft JhengHei", sans-serif !important;
+    color: #222 !important;
+    font-size: 18px !important;
+    line-height: 1.6 !important;
+    width: 100% !important;
+    overflow-x: hidden !important;
+    padding: 0 20px !important; /* 內邊距調整，減少空白 */
+    box-sizing: border-box !important;
+  }
+  /* --- 2. 核心容器設定 --- */
+  .vscan-about-container,
+  .vscan-form-wrapper {
+    max-width: var(--vscan-max-width) !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    padding: 0 !important;
+    box-sizing: border-box !important;
+  }
+
+  /* --- 3. 公司介紹區 (左圖右文) --- */
+  .vscan-about-container {
+    display: flex !important;
+    align-items: center;
+    justify-content: flex-start !important; /* 讓內容對齊左側 */
+    gap: 30px !important;
+    margin-bottom: 50px !important;
+  }
+  .vscan-about-image {
+    flex: 0 0 50% !important; /* 設定圖片佔用一半的寬度 */
+  }
+  .vscan-about-image img {
+    width: 100% !important; /* 確保圖片自適應寬度 */
+    height: auto !important;
+    display: block !important;
+    max-width: 100% !important; /* 防止圖片過大 */
+  }
+
+  .vscan-about-text {
+    flex: 1 !important; /* 讓文字區域占據剩餘空間 */
+  }
+
+  /* 強制修正：將右側介紹區塊內的所有文字標籤都設為純黑 */
+  .vscan-about-text,
+  .vscan-about-text p,
+  .vscan-about-text span {
+    color: #000000 !important;
+    font-size: 18px !important;
+    font-weight: normal !important;
+    line-height: 1.8 !important;
+  }
+    /* --- 4. 聯繫表單區優化 --- */
+  .vscan-form-wrapper {
+    text-align: left !important;
+    margin-bottom: 50px !important; /* 調整表單區的下邊距 */
+    z-index: 2 !important; /* 確保表單區域不會被遮擋 */
+  }
+
+  /* 表單上方導引文字 (粗體+黑色) */
+  .vscan-intro-text {
+    font-size: 18px !important;
+    color: #000000 !important;
+    font-weight: bold !important;
+    margin-bottom: 30px !important;
+  }
+
+  /* Email 連結 (粗體) */
+  .vscan-email-link {
+    color: #0088cc !important;
+    text-decoration: none !important;
+    font-size: 20px !important;
+    font-weight: bold !important;
+  }
+
+  /* 欄位標題 (Label) */
+  .vscan-label {
+    display: block !important;
+    font-size: 16px !important;
+    color: #444 !important;
+    font-weight: bold !important;
+    margin-bottom: 8px !important;
+  }
+
+  /* 輸入欄位高度優化 */
+  .vscan-input-blue,
+  .vscan-textarea-blue {
+    width: 100% !important;
+    padding: 10px 12px !important;
+    background-color: #e8f0fe !important;
+    border: 1px solid #d1e1f5 !important;
+    font-size: 16px !important;
+    margin-bottom: 20px !important;
+    border-radius: 4px !important;
+    box-sizing: border-box !important;
+  }
+    .vscan-submit-btn {
+    background-color: #00acc1 !important;
+    color: white !important;
+    padding: 12px 70px !important;
+    font-size: 18px !important;
+    font-weight: bold !important;
+    border: none !important;
+    border-radius: 5px !important;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+
+  .vscan-submit-btn:hover {
+    background-color: #008b9c !important;
+  }
+
+  /* --- 5. 響應式微調 (RWD) --- */
+  @media (max-width: 767px) {
+    .vscan-about-container {
+      flex-direction: column !important; /* 讓圖片和文字垂直排列 */
+      gap: 20px !important;
+    }
+    .vscan-about-image {
+      flex: 0 0 auto !important;
+      max-width: 100% !important;
+    }
+    .vscan-about-text {
+      font-size: 17px !important;
+    }
+    .vscan-email-link {
+      font-size: 18px !important;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .vscan-submit-btn {
+      width: 100%;
+      padding: 12px 0 !important;
+    }
+  }</style><style>/* 橢圓形圖片 */
+.circular-image {
+    width:900 px !important; /* 設定圖片寬度 */
+    height: 400px !important; /* 設定圖片高度，確保圖片保持圓形 */
+    object-fit: cover !important; /* 確保圖片保持自適應，並填滿圓形 */
+}</style><div class="container js-container"><nav class="menu"><ul class="navbar__menu"><li><a href="https://may95429.github.io/vscan2/" target="_self">VSCAN</a></li><li class="has-submenu"><a href="https://may95429.github.io/vscan2/website-security/" target="_self">服務內容</a><ul class="navbar__submenu"><li><a href="https://may95429.github.io/vscan2/website-security/" target="_self">網站弱點掃描</a></li><li><a href="https://may95429.github.io/vscan2/program-security/" target="_self">程式碼弱點掃描</a></li></ul></li><li><a href="https://may95429.github.io/vscan2/blog/" target="_self">最新消息</a></li><li><a href="https://may95429.github.io/vscan2/contact/" target="_self">關於我們</a></li></ul></nav><div class="container__content"><header class="top"><div class="top__item"><a class="logo" href="https://may95429.github.io/vscan2/"><img src="https://may95429.github.io/vscan2/media/website/v-scan-01-2.png" alt="vscan2" width="137" height="49"></a></div><div class="top__item top__item--right"><button class="menu-toggle js-menu-toggle" aria-label="Menu" aria-expanded="false"><span class="menu-toggle-box"><span class="menu-toggle-inner">Menu</span></span></button></div></header><main class="main page page--tag"><div class="main__left"><header><h1>Injection <sup>(3)</sup></h1></header></div><div class="main__right feed feed--tag"><div><article class="feed__item"><header><h2><a href="https://may95429.github.io/vscan2/blog/cross-site-scripting/">Cross-Site Scripting</a></h2></header><p>Cross-Site Scripting (XSS) 對網站而言，是一個大麻煩，不只是其弱點容易被發現與使用，被利用後所造成的後果更是無法預期! 現今幾乎所有的網站都會使用到 Javascript，很少純粹使用 HTML 語言，這導致使用者必須強迫接受 script 指令，在這個前提下，XSS 就是利用用戶端執行 script 時，埋入惡意程式，進而掌握機密資訊或後門，來達成竊取身份或遠端監控等目標。 Cross-Site Scripting 可以分為反射式(Reflected)、儲存式(Stored)： Reflected XSS 利用網站從存取可從外部修改的參數時，未經驗證而被埋入惡意語法，通常是利用可供輸入的欄位表單或可經proxy 修改的參數等功能，埋入惡意 script 語法，再將惡意連結偽裝讓受害人點擊，藉此騙過伺服器驗證而被盜取用戶端的身分資訊，並傳至第三方站台做為收集或掌控。 Stored XSS 則為利用類似留言板等網站功能，將外部輸入的惡意語法直接儲存在資料庫，當每個用戶存取到該頁面時，都會讀取到該惡意行為而被攻擊，受害者的層面更為廣大。 Reflected XSS 由此可知，XSS 的攻擊面向很多樣化，就算針對特殊符號阻擋，還是可能利用編碼或其他格式來構成script 語法，只要想辦法避開檢驗規則即可，而不像 SQL injection 只能符合 SQL 的語法，相對於HTML 格式嚴謹許多。就如從外部輸入 onmouseover=alert(document.cookie) ，其中沒使用到&lt; &gt;等跳脫字元，但瀏覽器認定為合法的HTML事件而被執行，再加上可編成其他格式來逃避驗證規則，難怪此弱點仍然是眾多駭客攻打網站的首選。 防禦方法可參考如 HTTP Header 安全性所述，對 Header 加入安全設定防止被竊取機密資訊，或&hellip;</p></article><article class="feed__item"><header><h2><a href="https://may95429.github.io/vscan2/blog/sql-injection/">SQL Injection</a></h2></header><p>SQL Injection 蟬聯 OWASP TOP 10 冠軍寶座從2013年版到最新的2017年版，可見其造成的傷害及普遍性之高，畢竟開發人員在將外部參數丟入 SQL 命令列時，為了方便就直接帶入，省略了過濾或用參數化的方式，相信有寫過串接 Database 的網站開發人員都會有的經驗。 SQL Injection 為透過外部使用者的輸入或可供改造的參數，未經驗證就帶入 SQL 相關指令被執行，導致跳脫原先預期的行為，變成攻擊者想要的行為。攻擊行為可利用 SQL 的指令如 SELECT、UPDATE 或 DELETE 等來造成資料庫非預期的行為，若執行權限又沒特別去做區分，等於將整個資料庫被外部任意存取與動作，甚至可用來執行指令碼，後果將難以彌補！ 綜合這幾種類型，可以得知為防範此攻擊，為當外部參數進入SQL 陳述式(Statement)前，需再經過驗證格式是否合法，是否有隱藏特殊符號等檢查，主要有以下幾種方法： 參數化 將參數經過 Parameter 或 Prepare 等可用來對 SQL 參數做執行前的型態轉換，若有特殊字元將無法產生攻擊作用，最為推薦此種方法！ .NET String query = "SELECT account_balance FROM user_data WHERE user_name = " +&hellip;</p></article><article class="feed__item"><header><h2><a href="https://may95429.github.io/vscan2/blog/injection-attack/">Injection Attack</a></h2></header><p>Injection Attack (注入式攻擊)為一種利用外部不被信任的輸入來源，未經驗證就被直接帶入後端處理，導致利用跳脫字元或編碼等方式造成攻擊字串被執行，進而發生無法預期行為，更由於其普遍性導致網路上有多種工具可協助進行攻擊，不需要高深技巧，可想而知其嚴重性！ 常見的 Injection attack SQL injection 及 XSS 更是蟬聯 OWASP TOP 10 多年，可見其造成的傷害及普遍性之高，畢竟開發人員在將外部參數丟入 SQL 命令列時，為了方便時常就直接帶入，省略了過濾或參數化等方式，相信有寫過串接 Database 的網站開發人員都會有的經驗吧! CRLF 則是利用 \r\n 換行字元切割 HTTP Header 並帶入攻擊行為，因為 Header 就是使用 \r\n 來做欄位的分離，而通常會搭配 XSS 來進行更危險的攻擊手法。 Code injeciton 則為由外部未經驗證的字串被直接使用 eval 或 system 等執行指令來執行，導致伺服器被執行未預期的程式行為，能造成的後果自然也是無法預期。 SMTP injection 為類似 CRLF 利用換行字元切割參數導致送出 SMTP&hellip;</p></article></div></div></main><footer class="footer"><div class="footer__copyright">Powered by Publii</div></footer></div></div><script defer="defer" src="https://may95429.github.io/vscan2/assets/js/scripts.min.js?v=1ea8317abae2e05fa2a65ed7bbff7ba7"></script><script>var images = document.querySelectorAll('img[loading]');
+
+        for (var i = 0; i < images.length; i++) {
+            if (images[i].complete) {
+                images[i].classList.add('is-loaded');
+            } else {
+                images[i].addEventListener('load', function () {
+                    this.classList.add('is-loaded');
+                }, false);
+            }
+        }</script></body></html>

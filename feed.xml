@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xmlns:media="http://search.yahoo.com/mrss/">
+    <title>vscan2</title>
+    <link href="https://may95429.github.io/vscan2/feed.xml" rel="self" />
+    <link href="https://may95429.github.io/vscan2" />
+    <updated>2026-03-06T15:38:21+08:00</updated>
+    <author>
+        <name>vscan</name>
+    </author>
+    <id>https://may95429.github.io/vscan2</id>
+
+    <entry>
+        <title>CSRF (Cross-Site Request Forgery)</title>
+        <author>
+            <name>vscan</name>
+        </author>
+        <link href="https://may95429.github.io/vscan2/blog/csrf-cross-site-request-forgery/"/>
+        <id>https://may95429.github.io/vscan2/blog/csrf-cross-site-request-forgery/</id>
+
+        <updated>2018-05-03T18:03:47+08:00</updated>
+            <summary type="html">
+                <![CDATA[
+                    <p>CSRF 為一種類似詐騙的手法，藉由偽造的第三方網站內容誘騙受害者連線，該受害者需已透過身分驗證拿到目標網站的 Session，導致在不知情狀況下，受害者開啟了</p>
+
+                ]]>
+            </summary>
+        <content type="html">
+            <![CDATA[
+                <p>CSRF 為一種類似詐騙的手法，藉由偽造的第三方網站內容誘騙受害者連線，該受害者需已透過身分驗證拿到目標網站的 Session，導致在不知情狀況下，受害者開啟了</p>
+
+<p>偽造網站後觸發了對目標網站以受害者身分的連線要求。  </p>
+<p>該弱點導致攻擊者劫持受害者的 Session，等於攻擊者拿到了受害者的身分，並在不知情狀況下被操作未知行為，可能造成受害者的機敏資料洩漏或交易行為變更等後果。此攻擊行為與 <a href="http://vscan.local/blog/cross-site-scripting/" target="_blank" rel="noopener">XSS</a> 不同的地方在於未利用 Script 取得受害者機密資訊，而是直接利用受害者發出的連線進行操作，因此除了 Cookie 的保護外，也必須對機敏內容的連線做二次驗證，採用不信任的方式檢查。   <figure class="post__image post__image--center size-full wp-image-2483"><img loading="lazy"  src="https://may95429.github.io/vscan2/media/posts/5/csrf.jpg" alt="CSRF" width="592" height="309" sizes="(min-width: 1500px) calc(7.87vw + 610px), (min-width: 900px) calc(44.48vw + 68px), (min-width: 780px) calc(8vw + 604px), calc(84.35vw + 23px)" srcset="https://may95429.github.io/vscan2/media/posts/5/responsive/csrf-xs.jpg 300w ,https://may95429.github.io/vscan2/media/posts/5/responsive/csrf-sm.jpg 480w ,https://may95429.github.io/vscan2/media/posts/5/responsive/csrf-md.jpg 768w"></figure>
+<p>Cross-Site Request Forgery   驗證的方向需能檢驗送出連線的使用者身分，以避免受害者在不知情狀況下被冒用身分，可參考方法如下，</p>
+<ul>
+<li>
+<p><strong> 檢查 <a href="http://vscan.local/blog/http-header-security/" target="_blank" rel="noopener">HTTP Header</a> 欄位</strong>：可透過檢查 Header 中的 Referer 欄位是否存在及是否為正常流程網域，藉此確認發送端的前一個頁面是否被偽造或合法使用。</p>
+</li>
+<li>
+<p><strong>驗證 Token 參數</strong>：除了驗證 Cookie 的 Token 之外，還需另外在 Request 中放入隱藏的動態 Token 參數。</p>
+</li>
+<li>
+<p><strong>辨識使用者資訊</strong>：取得使用者環境資訊如 IP 位址或瀏覽器的 User-Agent，若發現經變更即驗證失效或送出重複身份驗證需求。</p>
+</li>
+</ul>
+<p>  .NET 開發者可參考如下方法來進行：</p>
+<p>取得 Referer 標頭 (HttpRequest.UrlReferrer / HttpWebRequest.Referer)</p>
+<p><a href="https://msdn.microsoft.com/zh-tw/library/system.net.httpwebrequest.referer(v=vs.110).aspx" target="_blank" rel="noopener"><em>https://msdn.microsoft.com/zh-tw/library/system.net.httpwebrequest.referer(v=vs.110).aspx</em></a>  </p>
+<p> </p>
+<p>使用 ASP .NET Core 的 Antiforgery 防範</p>
+<p><a href="https://docs.microsoft.com/zh-tw/aspnet/core/security/anti-request-forgery" target="_blank" rel="noopener"><em>https://docs.microsoft.com/zh-tw/aspnet/core/security/anti-request-forgery</em></a>  </p>
+<p> </p>
+<p>取得使用者資訊 (User-Agent)</p>
+<p><a href="https://msdn.microsoft.com/zh-tw/library/system.web.httprequest.useragent(v=vs.110).aspx" target="_blank" rel="noopener"><em>https://msdn.microsoft.com/zh-tw/library/system.web.httprequest.useragent(v=vs.110).aspx</em></a></p>
+            ]]>
+        </content>
+    </entry>
+    <entry>
+        <title>Cross-Site Scripting</title>
+        <author>
+            <name>vscan</name>
+        </author>
+        <link href="https://may95429.github.io/vscan2/blog/cross-site-scripting/"/>
+        <id>https://may95429.github.io/vscan2/blog/cross-site-scripting/</id>
+
+        <updated>2018-02-28T22:40:16+08:00</updated>
+            <summary type="html">
+                <![CDATA[
+                    Cross-Site Scripting (XSS) 對網站而言，是一個大麻煩，不只是其弱點容易被發現與使用，被利用後所造成的後果更是無法預期! 現今幾乎所有的網站都會使用到 Javascript，很少純粹使用 HTML 語言，這導致使用者必須強迫接受 script 指令，在這個前提下，XSS 就是利用用戶端執行 script 時，埋入惡意程式，進而掌握機密資訊或後門，來達成竊取身份或遠端監控等目標。 Cross-Site Scripting 可以分為反射式(Reflected)、儲存式(Stored)： Reflected XSS 利用網站從存取可從外部修改的參數時，未經驗證而被埋入惡意語法，通常是利用可供輸入的欄位表單或可經proxy 修改的參數等功能，埋入惡意 script 語法，再將惡意連結偽裝讓受害人點擊，藉此騙過伺服器驗證而被盜取用戶端的身分資訊，並傳至第三方站台做為收集或掌控。 Stored XSS 則為利用類似留言板等網站功能，將外部輸入的惡意語法直接儲存在資料庫，當每個用戶存取到該頁面時，都會讀取到該惡意行為而被攻擊，受害者的層面更為廣大。 Reflected XSS 由此可知，XSS 的攻擊面向很多樣化，就算針對特殊符號阻擋，還是可能利用編碼或其他格式來構成script 語法，只要想辦法避開檢驗規則即可，而不像 SQL injection 只能符合 SQL 的語法，相對於HTML 格式嚴謹許多。就如從外部輸入 onmouseover=alert(document.cookie) ，其中沒使用到&lt; &gt;等跳脫字元，但瀏覽器認定為合法的HTML事件而被執行，再加上可編成其他格式來逃避驗證規則，難怪此弱點仍然是眾多駭客攻打網站的首選。 防禦方法可參考如 HTTP Header 安全性所述，對 Header 加入安全設定防止被竊取機密資訊，或&hellip;
+                ]]>
+            </summary>
+        <content type="html">
+            <![CDATA[
+                <p>Cross-Site Scripting (XSS) 對網站而言，是一個大麻煩，不只是其弱點容易被發現與使用，被利用後所造成的後果更是無法預期! 現今幾乎所有的網站都會使用到 Javascript，很少純粹使用 HTML 語言，這導致使用者必須強迫接受 script 指令，在這個前提下，XSS 就是利用用戶端執行 script 時，埋入惡意程式，進而掌握機密資訊或後門，來達成竊取身份或遠端監控等目標。  </p>
+<p>Cross-Site Scripting 可以分為反射式(Reflected)、儲存式(Stored)：</p>
+<ul>
+<li>
+<p><a href="https://capec.mitre.org/data/definitions/591.html" target="_blank" rel="noopener">Reflected XSS</a>  利用網站從存取可從外部修改的參數時，未經驗證而被埋入惡意語法，通常是利用可供輸入的欄位表單或可經proxy 修改的參數等功能，埋入惡意 script 語法，再將惡意連結偽裝讓受害人點擊，藉此騙過伺服器驗證而被盜取用戶端的身分資訊，並傳至第三方站台做為收集或掌控。</p>
+</li>
+<li>
+<p><a href="https://capec.mitre.org/data/definitions/592.html" target="_blank" rel="noopener noreferrer">Stored XSS</a> 則為利用類似留言板等網站功能，將外部輸入的惡意語法直接儲存在資料庫，當每個用戶存取到該頁面時，都會讀取到該惡意行為而被攻擊，受害者的層面更為廣大。</p>
+</li>
+</ul>
+<figure class="post__image post__image--center size-full wp-image-2472">  <img loading="lazy"  src="https://may95429.github.io/vscan2/media/posts/4/RXSS.gif" alt="" width="580" height="389"></figure>
+<p>Reflected XSS   由此可知，XSS 的攻擊面向很多樣化，就算針對特殊符號阻擋，還是可能利用編碼或其他格式來構成script 語法，只要想辦法避開檢驗規則即可，而不像 <a href="http://vscan.local/blog/sql-injection/" target="_blank" rel="noopener">SQL injection</a> 只能符合 SQL 的語法，相對於HTML 格式嚴謹許多。就如從外部輸入 onmouseover=alert(document.cookie) ，其中沒使用到&lt; &gt;等跳脫字元，但瀏覽器認定為合法的HTML事件而被執行，再加上可編成其他格式來逃避驗證規則，難怪此弱點仍然是眾多駭客攻打網站的首選。</p>
+<p>防禦方法可參考如 <a href="http://vscan.local/blog/http-header-security/" target="_blank" rel="noopener">HTTP Header</a> 安全性所述，對 Header 加入安全設定防止被竊取機密資訊，或 <a href="http://vscan.local/blog/injection-attack/" target="_blank" rel="noopener">Injection Attack</a> 的通用原則，對可竄改的外部來源做過濾驗證，有幾項原則可參考：</p>
+<ul>
+<li>
+<p><strong>不要將不信任資料放入 HTML 中，但通常難以達成。</strong></p>
+</li>
+<li>
+<p><strong>不信任資料放入 HTML 前須先進行編碼特殊字元，例如 &amp;  &lt;  &gt;  "  ' 及 / 等字元。</strong></p>
+</li>
+<li>
+<p><strong>不信任資料不建議放入 Javascript ，極度危險，因為難以確認編碼目標。</strong></p>
+</li>
+<li>
+<p><strong>不信任資料放入CSS 中需要經過編碼處理，HTML Style格式同樣會造成跳脫。</strong></p>
+</li>
+</ul>
+<p>當然最安全方法是使用白名單政策，可使用正則表示式(Regular Expression) 來限定外部參數的資料格式，但通常很難符合網站功能的需求，因此會採用黑名單方式，可藉由第三方套件或開發語言原生的安全套件來過濾跳脫字元，如 OWASP 的 <a href="https://www.owasp.org/index.php/Category:OWASP_Enterprise_Security_API" target="_blank" rel="noopener">ESAPI</a> 專案或微軟原生提供的 <a href="https://www.owasp.org/index.php/.NET_AntiXSS_Library" target="_blank" rel="noopener">AntiXSS</a> 套件等，都是經測試防禦效果較為全面的選擇，並有經過<a href="http://boldersecurity.github.io/encoder-comparison-reference/" target="_blank" rel="noopener">第三方單位</a>比較針對各字元編碼的成效。  </p>
+<p> </p>
+<p><strong><em>ESAPI</em></strong></p>
+<p><em>輸入端驗證</em></p>
+<p><em>String validatedFirstName = ESAPI.validator().getValidInput("FirstName",</em> <em> myForm.getFirstName(), "FirstNameRegex", 255, false, errorList);</em> <em> boolean isValidFirstName = ESAPI.validator().isValidInput("FirstName",</em> <em> myForm.getFirstName(), "FirstNameRegex", 255, false);</em></p>
+<p><em>輸出端編碼</em></p>
+<p><em>String safeOutput = ESAPI.encoder().encodeForHTML( clean encoded output Comment );</em>  </p>
+<p> </p>
+<p><strong><em>AntiXSS</em></strong></p>
+<p><em>HtmlEncode Method： 將內容經過編碼</em></p>
+<p><em>GetSafeHtml  Method： 輸出完整的HTML架構</em></p>
+<p><em>GetSafeHtmlFragment  Method： 將輸入的HTML片段輸出</em></p>
+            ]]>
+        </content>
+    </entry>
+    <entry>
+        <title>SQL Injection</title>
+        <author>
+            <name>vscan</name>
+        </author>
+        <link href="https://may95429.github.io/vscan2/blog/sql-injection/"/>
+        <id>https://may95429.github.io/vscan2/blog/sql-injection/</id>
+
+        <updated>2017-11-15T21:37:38+08:00</updated>
+            <summary type="html">
+                <![CDATA[
+                    SQL Injection 蟬聯 OWASP TOP 10 冠軍寶座從2013年版到最新的2017年版，可見其造成的傷害及普遍性之高，畢竟開發人員在將外部參數丟入 SQL 命令列時，為了方便就直接帶入，省略了過濾或用參數化的方式，相信有寫過串接 Database 的網站開發人員都會有的經驗。 SQL Injection 為透過外部使用者的輸入或可供改造的參數，未經驗證就帶入 SQL 相關指令被執行，導致跳脫原先預期的行為，變成攻擊者想要的行為。攻擊行為可利用 SQL 的指令如 SELECT、UPDATE 或 DELETE 等來造成資料庫非預期的行為，若執行權限又沒特別去做區分，等於將整個資料庫被外部任意存取與動作，甚至可用來執行指令碼，後果將難以彌補！ 綜合這幾種類型，可以得知為防範此攻擊，為當外部參數進入SQL 陳述式(Statement)前，需再經過驗證格式是否合法，是否有隱藏特殊符號等檢查，主要有以下幾種方法： 參數化 將參數經過 Parameter 或 Prepare 等可用來對 SQL 參數做執行前的型態轉換，若有特殊字元將無法產生攻擊作用，最為推薦此種方法！ .NET String query = "SELECT account_balance FROM user_data WHERE user_name = " +&hellip;
+                ]]>
+            </summary>
+        <content type="html">
+            <![CDATA[
+                <p>SQL Injection 蟬聯 OWASP TOP 10 冠軍寶座從2013年版到最新的2017年版，可見其造成的傷害及普遍性之高，畢竟開發人員在將外部參數丟入 SQL 命令列時，為了方便就直接帶入，省略了過濾或用參數化的方式，相信有寫過串接 Database 的網站開發人員都會有的經驗。</p>
+<p>SQL Injection 為透過外部使用者的輸入或可供改造的參數，未經驗證就帶入 SQL 相關指令被執行，導致跳脫原先預期的行為，變成攻擊者想要的行為。攻擊行為可利用 SQL 的指令如 SELECT、UPDATE 或 DELETE 等來造成資料庫非預期的行為，若執行權限又沒特別去做區分，等於將整個資料庫被外部任意存取與動作，甚至可用來執行指令碼，後果將難以彌補！  </p>
+<h4>SQL Injection 攻擊型態類型</h4>
+<ul>
+<li><a href="https://capec.mitre.org/data/definitions/7.html" target="_blank" rel="noopener"><span style="font-size: medium;">CAPEC-7：盲目的SQL注入</span></a></li>
+<li><a href="https://capec.mitre.org/data/definitions/66.html" target="_blank" rel="noopener"><span style="font-size: medium;">CAPEC-66：SQL注入</span></a></li>
+<li><a href="https://capec.mitre.org/data/definitions/108.html" target="_blank" rel="noopener"><span style="font-size: medium;">CAPEC-108：通過SQL注入執行命令行</span></a></li>
+<li><a href="https://capec.mitre.org/data/definitions/109.html" target="_blank" rel="noopener"><span style="font-size: medium;">CAPEC-109：對象關係映射注入</span></a></li>
+<li><a href="https://capec.mitre.org/data/definitions/110.html" target="_blank" rel="noopener"><span style="font-size: medium;">CAPEC-110：通過SOAP參數篡改進行SQL注入</span></a></li>
+<li><a href="https://capec.mitre.org/data/definitions/470.html" target="_blank" rel="noopener"><span style="font-size: medium;">CAPEC-470：從數據庫擴展對操作系統的控制</span></a></li>
+</ul>
+<p>綜合這幾種類型，可以得知為防範此攻擊，為當外部參數進入SQL 陳述式(Statement)前，需再經過驗證格式是否合法，是否有隱藏特殊符號等檢查，主要有以下幾種方法：</p>
+<p><strong>參數化</strong> 將參數經過 Parameter 或 Prepare 等可用來對 SQL 參數做執行前的型態轉換，若有特殊字元將無法產生攻擊作用，最為推薦此種方法！</p>
+<p><em>.NET<br></em><em style="font-size: inherit;">String query = "SELECT account_balance FROM user_data WHERE user_name = "</em><span style="font-size: inherit;"> </span><em style="font-size: inherit;"> + request.getParameter("customerName");<br></em><span style="font-size: inherit;"> </span><em style="font-size: inherit;">try {</em><span style="font-size: inherit;"> <br></span><em style="font-size: inherit;"> Statement statement = connection.createStatement( … );</em><span style="font-size: inherit;"> </span><em style="font-size: inherit;"> ResultSet results = statement.executeQuery( query );</em><span style="font-size: inherit;"> <br></span><em style="font-size: inherit;"> }</em><span style="font-size: inherit;"> <br></span><em style="font-size: inherit;">PHP</em><span style="font-size: inherit;"> <br></span><em style="font-size: inherit;"> $preparedStatement = $db-&gt;prepare('INSERT INTO table (column) VALUES (:column)'); $preparedStatement-&gt;execute(array('column' =&gt; $unsafeValue));</em><span style="font-size: inherit;">  </span></p>
+<p><strong style="font-size: inherit;">替代字元</strong><span style="font-size: inherit;"> <br></span><span style="font-size: inherit;">使用 Replace() 等方法來將特定字元做替換，但可能攻擊字元稍微經過變化或加密後，變成誤擋或漏檔等結果。</span></p>
+<p><span style="font-size: inherit;"> </span><em style="font-size: inherit;">string sql = "SELECT * FROM WIDGETS WHERE ID=" +badValue.Replace("'","''");</em><span style="font-size: inherit;">   </span></p>
+<p><strong style="font-size: inherit;">正則表達式</strong><span style="font-size: inherit;"> <br>利用 Regular Expression 設定合法的格式，直接用白名單方式限定參數的內容，這就變成需根據資料的不同來調整對應的 Regex，雖然嚴謹但較為麻煩，但有可能產生誤擋或漏擋的情況發生。   </span></p>
+<p><span style="font-size: inherit;">以上幾種防範方法適用於 </span><a href="https://may95429.github.io/vscan2/blog/injection-attack/">Injection attack</a><span style="font-size: inherit;"> 類型的攻擊行為，可針對外部不被信任的參數做驗證與過濾處理，避免產生不可預期的行為，可視資料的多樣性與參數用途來選擇相對應的防禦方式。</span></p>
+            ]]>
+        </content>
+    </entry>
+    <entry>
+        <title>Injection Attack</title>
+        <author>
+            <name>vscan</name>
+        </author>
+        <link href="https://may95429.github.io/vscan2/blog/injection-attack/"/>
+        <id>https://may95429.github.io/vscan2/blog/injection-attack/</id>
+
+        <updated>2017-06-15T23:05:21+08:00</updated>
+            <summary type="html">
+                <![CDATA[
+                    Injection Attack (注入式攻擊)為一種利用外部不被信任的輸入來源，未經驗證就被直接帶入後端處理，導致利用跳脫字元或編碼等方式造成攻擊字串被執行，進而發生無法預期行為，更由於其普遍性導致網路上有多種工具可協助進行攻擊，不需要高深技巧，可想而知其嚴重性！ 常見的 Injection attack SQL injection 及 XSS 更是蟬聯 OWASP TOP 10 多年，可見其造成的傷害及普遍性之高，畢竟開發人員在將外部參數丟入 SQL 命令列時，為了方便時常就直接帶入，省略了過濾或參數化等方式，相信有寫過串接 Database 的網站開發人員都會有的經驗吧! CRLF 則是利用 \r\n 換行字元切割 HTTP Header 並帶入攻擊行為，因為 Header 就是使用 \r\n 來做欄位的分離，而通常會搭配 XSS 來進行更危險的攻擊手法。 Code injeciton 則為由外部未經驗證的字串被直接使用 eval 或 system 等執行指令來執行，導致伺服器被執行未預期的程式行為，能造成的後果自然也是無法預期。 SMTP injection 為類似 CRLF 利用換行字元切割參數導致送出 SMTP&hellip;
+                ]]>
+            </summary>
+        <content type="html">
+            <![CDATA[
+                <p>Injection Attack (注入式攻擊)為一種利用外部不被信任的輸入來源，未經驗證就被直接帶入後端處理，導致利用跳脫字元或編碼等方式造成攻擊字串被執行，進而發生無法預期行為，更由於其普遍性導致網路上有多種工具可協助進行攻擊，不需要高深技巧，可想而知其嚴重性！  </p>
+<p><strong>常見的 Injection attack</strong></p>
+<ul>
+<li><strong><a href="https://may95429.github.io/vscan2/blog/sql-injection/" target="_blank" rel="noopener noreferrer"><span style="font-size: large;">SQL injection</span></a></strong></li>
+<li><a href="http://vscan.local/blog/cross-site-scripting/" target="_blank" rel="noopener"></a><strong><a href="https://may95429.github.io/vscan2/blog/cross-site-scripting/">Cross-site Scripting (XSS)</a></strong></li>
+<li><span style="font-size: medium;">CRLF injection/Host Header</span></li>
+<li><span style="font-size: medium;">Code injection/OS cmd</span></li>
+<li><span style="font-size: medium;">SMTP injeciton</span></li>
+<li><span style="font-size: medium;">XPath injection</span></li>
+</ul>
+<p><strong>SQL injection </strong>及 <strong>XSS </strong>更是蟬聯 OWASP TOP 10 多年，可見其造成的傷害及普遍性之高，畢竟開發人員在將外部參數丟入 SQL 命令列時，為了方便時常就直接帶入，省略了過濾或參數化等方式，相信有寫過串接 Database 的網站開發人員都會有的經驗吧!</p>
+<p><strong>CRLF</strong> 則是利用 \r\n 換行字元切割 HTTP Header 並帶入攻擊行為，因為 Header 就是使用 \r\n 來做欄位的分離，而通常會搭配 XSS 來進行更危險的攻擊手法。</p>
+<p><strong>Code injeciton</strong> 則為由外部未經驗證的字串被直接使用 eval 或 system 等執行指令來執行，導致伺服器被執行未預期的程式行為，能造成的後果自然也是無法預期。</p>
+<p><strong>SMTP injection</strong> 為類似 CRLF 利用換行字元切割參數導致送出 SMTP 相關指令，常被第三方用來寄送匿名廣告信件(Relay)，從而演變成釣魚信件的進階持續式攻擊 (APT)。</p>
+<p><strong>XPath injection</strong> 攻擊原理類似 SQL injection，利用跳脫字元繞過檢查，並帶入其他攻擊行為，若為處理使用者身分驗證等流程，則可能造成提權與機密資訊外洩等風險。</p>
+<p>Injection 式的攻擊手法都是直接信任外部輸入，沒有經過字元的檢查或進行過濾，或是只利用前端 javascript 檢查輸入行為，卻很容易被駭客繞過，能這麼長久被列為最常見的攻擊千萬不可忽略。</p>
+            ]]>
+        </content>
+    </entry>
+    <entry>
+        <title>HTTP Header 安全性</title>
+        <author>
+            <name>vscan</name>
+        </author>
+        <link href="https://may95429.github.io/vscan2/blog/http-header-an-quan-xing/"/>
+        <id>https://may95429.github.io/vscan2/blog/http-header-an-quan-xing/</id>
+
+        <updated>2017-03-30T22:20:12+08:00</updated>
+            <summary type="html">
+                <![CDATA[
+                    HTTP Header 範例 HTTP Header 可視為網站與客戶在連線時的橋溝通梁，也就是遵照 HTTP 的協議，利用 Server 端的參數來告知客戶端瀏覽器需遵守其遊戲規則，你才能跟我進行連線溝通與確認是否繼續進行下一步動作，所以當客戶端發出需求時，Server 端可藉由回應來確認連線的安全性需求。 近來跟客戶討論網站安全性時，常會遇到程式碼修補上的困難，不外乎還需要開發人員的調整及測試時間等問題，其實可以先進行 HTTP Header 的安全性設定。 就如 OWASP TOP 10 與 SANS/CWE TOP 25 所列弱點，常見的 XSS(Cross-Site Scripting)與 CSRF(Cross-Site Requset Forgery)等弱點都可藉由調整 HTTP Header 來達成初步的防禦效果! OWASP 就有針對此發表了相關說明。 HTTP Header 安全設定 其中 HPKP 可綁定憑證，限定客戶端只能使用 Server 提供的憑證來連線，中間若有經過 Proxy或第三方憑證被置換時，連線都會無效！這專門在防範中間人攻擊(Man-in-the-Middle Attack)，也就是常會有第三方或駭客想藉由置換憑證來修改或窺看SSL加密的通訊內容，但透過加入 HPKP&hellip;
+                ]]>
+            </summary>
+        <content type="html">
+            <![CDATA[
+                <figure class="post__image wp-image-2340"><img loading="lazy"  title="HTTP Header" src="https://may95429.github.io/vscan2/media/posts/1/擷取.png" alt="HTTP Header to Google" width="509" height="312" sizes="(min-width: 1500px) calc(7.87vw + 610px), (min-width: 900px) calc(44.48vw + 68px), (min-width: 780px) calc(8vw + 604px), calc(84.35vw + 23px)" srcset="https://may95429.github.io/vscan2/media/posts/1/responsive/擷取-xs.png 300w ,https://may95429.github.io/vscan2/media/posts/1/responsive/擷取-sm.png 480w ,https://may95429.github.io/vscan2/media/posts/1/responsive/擷取-md.png 768w"></figure>
+<p>HTTP Header 範例  </p>
+<p>HTTP Header 可視為網站與客戶在連線時的橋溝通梁，也就是遵照 HTTP 的協議，利用 Server 端的參數來告知客戶端瀏覽器需遵守其遊戲規則，你才能跟我進行連線溝通與確認是否繼續進行下一步動作，所以當客戶端發出需求時，Server 端可藉由回應來確認連線的安全性需求。</p>
+<p>近來跟客戶討論網站安全性時，常會遇到程式碼修補上的困難，不外乎還需要開發人員的調整及測試時間等問題，其實可以先進行 HTTP Header 的安全性設定。 就如 OWASP TOP 10 與 SANS/CWE TOP 25 所列弱點，常見的 <a href="https://may95429.github.io/vscan2/blog/cross-site-scripting/" target="_blank" rel="noopener noreferrer">XSS(Cross-Site Scripting)</a>與 CSRF(Cross-Site Requset Forgery)等弱點都可藉由調整 HTTP Header 來達成初步的防禦效果! OWASP 就有針對此發表了相關說明。</p>
+<p><strong>HTTP Header 安全設定</strong></p>
+<ul>
+<li style="font-weight: 400; text-align: left;"><a href="https://www.owasp.org/index.php/OWASP_Secure_Headers_Project#hsts_bp" target="_blank" rel="noopener"><span style="fontfont-weight: 400; font-size: medium;">HTTP Strict Transport Security (HSTS)</span></a></li>
+<li style="font-weight: 400; text-align: left;"><a href="https://www.owasp.org/index.php/OWASP_Secure_Headers_Project#hpkp_bp" target="_blank" rel="noopener"><span style="font-weight: 400; font-size: medium;">Public Key Pinning Extension for HTTP (HPKP)</span></a></li>
+<li style="font-weight: 400; text-align: left;"><a href="https://www.owasp.org/index.php/OWASP_Secure_Headers_Project#xfo_bp" target="_blank" rel="noopener"><span style="font-weight: 400; font-size: medium;">X-Frame-Options</span></a></li>
+<li style="font-weight: 400; text-align: left;"><a href="https://www.owasp.org/index.php/OWASP_Secure_Headers_Project#xxxsp_bp" target="_blank" rel="noopener"><span style="font-weight: 400; font-size: medium;">X-XSS-Protection</span></a></li>
+<li style="font-weight: 400; text-align: left;"><a href="https://www.owasp.org/index.php/OWASP_Secure_Headers_Project#xcto_bp" target="_blank" rel="noopener"><span style="font-weight: 400; font-size: medium;">X-Content-Type-Options</span></a></li>
+<li style="font-weight: 400; text-align: left;"><a href="https://www.owasp.org/index.php/OWASP_Secure_Headers_Project#csp_bp" target="_blank" rel="noopener"><span style="font-weight: 400; font-size: medium;">Content-Security-Policy</span></a></li>
+<li style="font-weight: 400; text-align: left;"><a href="https://www.owasp.org/index.php/OWASP_Secure_Headers_Project#xpcdp_bp" target="_blank" rel="noopener"><span style="font-weight: 400; font-size: medium;">X-Permitted-Cross-Domain-Policies</span></a></li>
+<li style="font-weight: 400; text-align: left;"><a href="https://www.owasp.org/index.php/OWASP_Secure_Headers_Project#rp_bp" target="_blank" rel="noopener"><span style="font-weight: 400; font-size: medium;">Referrer-Policy</span></a></li>
+</ul>
+<p>其中 HPKP 可綁定憑證，限定客戶端只能使用 Server 提供的憑證來連線，中間若有經過 Proxy或第三方憑證被置換時，連線都會無效！這專門在防範中間人攻擊(Man-in-the-Middle Attack)，也就是常會有第三方或駭客想藉由置換憑證來修改或窺看SSL加密的通訊內容，但透過加入 HPKP 的方式，將憑證的資訊綁入 Header，這樣客戶在連線時就可以比對是否為正確的憑證，才能放心的進行安全連線。</p>
+<p>X-Frame-Options 可限定網域連線存取，也就是防範釣魚網站或 Clickjacking 等攻擊，藉由限制來源網域是否符合同源政策或是允許的白名單才可進行存取，避免有心人透過 iframe 或蓋台等方式來騙取受害者點擊造假的網站或連結，導致客戶機密資訊被竊取。</p>
+<p>其他關於防範 XSS 攻擊的有 Content-Security-Policy 及 X-XSS-Protection，另外在設定 Cookies 時可帶入 Httponly 參數，限制只能透過 HTTP 方式取得 Cookie，若利用 Script 方式會被拒絕，一樣可以達成防禦的效果!  </p>
+<p> </p>
+<p>利用調整 HTTP Header 的安全性，可謂有事半功倍的成效，但是這終究只是第一線的防禦並只能抵擋部份攻擊，根據資安的縱深防禦理論，須藉由定期的弱點掃描檢視網站，網站伺服器及程式碼持續性的安全性調整及更新，才是網站能長久安全的不二法門。</p>
+            ]]>
+        </content>
+    </entry>
+</feed>

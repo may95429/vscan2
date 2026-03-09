@@ -104,6 +104,51 @@ article.content {
     .vscan-hero__text { font-size: 1.4rem !important; }
     .vscan-about-split { flex-direction: column; text-align: center; }
 }</style><style>/*網站弱點服務*/
+/*3張圖片左右左*/
+    /* 容器設定 */
+    .vscan-zigzag-container {
+        width: 100%;
+        max-width: 1100px; /* 限制整體內容寬度，避免在大螢幕散太開 */
+        margin: 40px auto;
+        display: flex;
+        flex-direction: column;
+        gap: 20px; /* 圖片之間的間距 */
+    }
+
+    /* 每一項的基礎樣式 */
+    .vscan-zigzag-item {
+        width: 100%;
+        display: flex;
+    }
+
+    /* 預設靠左 (第 1, 3 張) */
+    .vscan-zigzag-item:nth-child(odd) {
+        justify-content: flex-start;
+    }
+
+    /* 關鍵：第 2 張靠右 */
+    .vscan-zigzag-item:nth-child(even) {
+        justify-content: flex-end;
+    }
+
+    /* 圖片寬度限制，確保有空間「左右跑」 */
+    .vscan-zigzag-item img {
+        max-width: 80%; /* 讓圖片不佔滿全寬，才有靠左靠右的效果 */
+        height: auto;
+        border-radius: 4px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    }
+
+    /* 手機版：恢復置中排列，避免圖片太小 */
+    @media (max-width: 768px) {
+        .vscan-zigzag-item img {
+            max-width: 100%;
+        }
+        .vscan-zigzag-item {
+            justify-content: center !important;
+        }
+    }
+    
 .service-grid {
     display: grid !important;  /* 強制設定 grid */
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)) !important; /* 設定自動調整列數 */
@@ -137,12 +182,6 @@ article.content {
     font-size: 14px !important;
     line-height: 1.5 !important;
     color: #555 !important;
-}
-
-/* 圖片自適應調整 */
-.wpb_wrapper img {
-    max-width: 100% !important;
-    height: auto !important;
 }</style><style>/*關於我們*/
   :root {
     --vscan-max-width: 1200px !important; /* 修正最大寬度 */

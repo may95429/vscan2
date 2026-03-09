@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="zh-tw"><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>SQL Injection - vscan2</title><meta name="description" content="SQL Injection 蟬聯 OWASP TOP 10 冠軍寶座從2013年版到最新的2017年版，可見其造成的傷害及普遍性之高，畢竟開發人員在將外部參數丟入 SQL 命令列時，為了方便就直接帶入，省略了過濾或用參數化的方式，相信有寫過串接 Database 的網站開發人員都會有的經驗。 SQL Injection 為透過外部使用者的輸入或可供改造的參數，未經驗證就帶入 SQL 相關指令被執行，導致跳脫原先預期的行為，變成攻擊者想要的行為。攻擊行為可利用 SQL 的指令如 SELECT、UPDATE 或&hellip;"><meta name="generator" content="Publii Open-Source CMS for Static Site"><link rel="canonical" href="https://may95429.github.io/vscan2/blog/sql-injection/"><link rel="alternate" type="application/atom+xml" href="https://may95429.github.io/vscan2/feed.xml" title="vscan2 - RSS"><link rel="alternate" type="application/json" href="https://may95429.github.io/vscan2/feed.json" title="vscan2 - JSON"><meta property="og:title" content="SQL Injection"><meta property="og:image" content="https://may95429.github.io/vscan2/media/website/v-scan-01-2.png"><meta property="og:image:width" content="137"><meta property="og:image:height" content="49"><meta property="og:site_name" content="vscan2"><meta property="og:description" content="SQL Injection 蟬聯 OWASP TOP 10 冠軍寶座從2013年版到最新的2017年版，可見其造成的傷害及普遍性之高，畢竟開發人員在將外部參數丟入 SQL 命令列時，為了方便就直接帶入，省略了過濾或用參數化的方式，相信有寫過串接 Database 的網站開發人員都會有的經驗。 SQL Injection 為透過外部使用者的輸入或可供改造的參數，未經驗證就帶入 SQL 相關指令被執行，導致跳脫原先預期的行為，變成攻擊者想要的行為。攻擊行為可利用 SQL 的指令如 SELECT、UPDATE 或&hellip;"><meta property="og:url" content="https://may95429.github.io/vscan2/blog/sql-injection/"><meta property="og:type" content="article"><link rel="shortcut icon" href="https://may95429.github.io/vscan2/media/website/favi.png" type="image/x-icon"><link rel="stylesheet" href="https://may95429.github.io/vscan2/assets/css/style.css?v=c4041afbaf2182bfe4d4398affe43a25"><script type="application/ld+json">{"@context":"http://schema.org","@type":"Article","mainEntityOfPage":{"@type":"WebPage","@id":"https://may95429.github.io/vscan2/blog/sql-injection/"},"headline":"SQL Injection","datePublished":"2017-11-15T21:37+08:00","dateModified":"2026-03-04T18:22+08:00","image":{"@type":"ImageObject","url":"https://may95429.github.io/vscan2/media/website/v-scan-01-2.png","height":49,"width":137},"description":"SQL Injection 蟬聯 OWASP TOP 10 冠軍寶座從2013年版到最新的2017年版，可見其造成的傷害及普遍性之高，畢竟開發人員在將外部參數丟入 SQL 命令列時，為了方便就直接帶入，省略了過濾或用參數化的方式，相信有寫過串接 Database 的網站開發人員都會有的經驗。 SQL Injection 為透過外部使用者的輸入或可供改造的參數，未經驗證就帶入 SQL 相關指令被執行，導致跳脫原先預期的行為，變成攻擊者想要的行為。攻擊行為可利用 SQL 的指令如 SELECT、UPDATE 或&hellip;","author":{"@type":"Person","name":"vscan","url":"https://may95429.github.io/vscan2/authors/vscan/"},"publisher":{"@type":"Organization","name":"vscan","logo":{"@type":"ImageObject","url":"https://may95429.github.io/vscan2/media/website/v-scan-01-2.png","height":49,"width":137}}}</script><noscript><style>img[loading] {
+<!DOCTYPE html><html lang="zh-tw"><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>SQL Injection - vscan2</title><meta name="description" content="SQL Injection 蟬聯 OWASP TOP 10 冠軍寶座從2013年版到最新的2017年版，可見其造成的傷害及普遍性之高，畢竟開發人員在將外部參數丟入 SQL 命令列時，為了方便就直接帶入，省略了過濾或用參數化的方式，相信有寫過串接 Database 的網站開發人員都會有的經驗。 SQL Injection 為透過外部使用者的輸入或可供改造的參數，未經驗證就帶入 SQL 相關指令被執行，導致跳脫原先預期的行為，變成攻擊者想要的行為。攻擊行為可利用 SQL 的指令如 SELECT、UPDATE 或&hellip;"><meta name="generator" content="Publii Open-Source CMS for Static Site"><link rel="canonical" href="https://may95429.github.io/vscan2/blog/sql-injection/"><link rel="alternate" type="application/atom+xml" href="https://may95429.github.io/vscan2/feed.xml" title="vscan2 - RSS"><link rel="alternate" type="application/json" href="https://may95429.github.io/vscan2/feed.json" title="vscan2 - JSON"><meta property="og:title" content="SQL Injection"><meta property="og:image" content="https://may95429.github.io/vscan2/media/website/v-scan-01-2.png"><meta property="og:image:width" content="137"><meta property="og:image:height" content="49"><meta property="og:site_name" content="vscan2"><meta property="og:description" content="SQL Injection 蟬聯 OWASP TOP 10 冠軍寶座從2013年版到最新的2017年版，可見其造成的傷害及普遍性之高，畢竟開發人員在將外部參數丟入 SQL 命令列時，為了方便就直接帶入，省略了過濾或用參數化的方式，相信有寫過串接 Database 的網站開發人員都會有的經驗。 SQL Injection 為透過外部使用者的輸入或可供改造的參數，未經驗證就帶入 SQL 相關指令被執行，導致跳脫原先預期的行為，變成攻擊者想要的行為。攻擊行為可利用 SQL 的指令如 SELECT、UPDATE 或&hellip;"><meta property="og:url" content="https://may95429.github.io/vscan2/blog/sql-injection/"><meta property="og:type" content="article"><link rel="shortcut icon" href="https://may95429.github.io/vscan2/media/website/favi.png" type="image/x-icon"><link rel="stylesheet" href="https://may95429.github.io/vscan2/assets/css/style.css?v=93503a27439a41f0afb9f75e0ad4f36a"><script type="application/ld+json">{"@context":"http://schema.org","@type":"Article","mainEntityOfPage":{"@type":"WebPage","@id":"https://may95429.github.io/vscan2/blog/sql-injection/"},"headline":"SQL Injection","datePublished":"2017-11-15T21:37+08:00","dateModified":"2026-03-04T18:22+08:00","image":{"@type":"ImageObject","url":"https://may95429.github.io/vscan2/media/website/v-scan-01-2.png","height":49,"width":137},"description":"SQL Injection 蟬聯 OWASP TOP 10 冠軍寶座從2013年版到最新的2017年版，可見其造成的傷害及普遍性之高，畢竟開發人員在將外部參數丟入 SQL 命令列時，為了方便就直接帶入，省略了過濾或用參數化的方式，相信有寫過串接 Database 的網站開發人員都會有的經驗。 SQL Injection 為透過外部使用者的輸入或可供改造的參數，未經驗證就帶入 SQL 相關指令被執行，導致跳脫原先預期的行為，變成攻擊者想要的行為。攻擊行為可利用 SQL 的指令如 SELECT、UPDATE 或&hellip;","author":{"@type":"Person","name":"vscan","url":"https://may95429.github.io/vscan2/authors/vscan/"},"publisher":{"@type":"Organization","name":"vscan","logo":{"@type":"ImageObject","url":"https://may95429.github.io/vscan2/media/website/v-scan-01-2.png","height":49,"width":137}}}</script><noscript><style>img[loading] {
                     opacity: 1;
                 }</style></noscript><style>/* 移除 header 與內容之間的灰色區塊 */
 
@@ -9,73 +9,7 @@
 
 .vscan-hero__overlay{
     background: rgba(0,0,0,0.35) !important;
-}
-<style>
-    </head>
-    <body class="post-template">
-        <style>
- 
-/* =========================================================
-   TechNews：只讓 Blog(列表) 有 sidebar
-   -> Page / Post 取消 sidebar + 修正偏移 + 修正 footer
-========================================================= */
-
-/* 1) Page / Post：直接隱藏 sidebar */
-body.page-template .sidebar,
-body.post-template .sidebar{
-  display: none !important;
-}
-
-/* 2) Page / Post：把兩欄 grid 改成一欄，避免主欄卡在第2欄造成左邊大留白 */
-body.page-template .main-content,
-body.post-template .main-content{
-  grid-template-columns: 1fr !important;
-  grid-column-gap: 0 !important;
-  max-width: 100% !important; /* 減少左右邊距 */
-  margin-left: auto !important;
-  margin-right: auto !important;
-  padding-left: 20px !important;
-  padding-right: 20px !important;
-}
-
-/* 3) Page / Post：主內容強制吃滿整列（覆蓋 theme 在大螢幕時給的 grid-column: 2/3） */
-body.page-template main,
-body.post-template main{
-  grid-column: 1 / -1 !important;
-  max-width: 100% !important;
-  margin: 0 auto !important;
-}
-
-/* 4) Page / Post：把內容區塊可能被 theme 加的左右 margin 清掉（避免看起來又偏） */
-body.page-template .content,
-body.post-template .content,
-body.page-template .content__entry,
-body.post-template .content__entry{
-  margin-left: 0 !important;
-  margin-right: 0 !important;
-}
-
-/* 5) Page / Post：footer 強制回到正常全寬、不要被當成側欄寬度、也不要跑到右邊 */
-body.page-template .footer,
-body.post-template .footer{
-  width: 100% !important;
-  max-width: none !important;
-  margin: 0 !important;
-  grid-column: 1 / -1 !important;
-  clear: both;
-}
-
-/* 6) （保險）如果 TechNews 用 CSS 變數控制欄寬，Page / Post 也一起歸零 */
-body.page-template,
-body.post-template{
-  --sidebar-width: 0;
-  --main-col-width: 100%;
-}
-
-    
-.main-content{
-    margin-top：0px !important;  
-}</style><style>/*網站弱點服務*/
+}</style></head><body class="post-template"><style>/*網站弱點服務*/
 .service-grid {
     display: grid !important;  /* 強制設定 grid */
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)) !important; /* 設定自動調整列數 */
@@ -339,4 +273,4 @@ body.post-template{
     padding-top: 20px !important;
     border-top: 1px solid #333 !important;
     color: #666 !important;
-}</style></head></html>
+}</style></body></html>

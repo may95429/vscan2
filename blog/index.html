@@ -9,11 +9,19 @@
 
 .vscan-hero__overlay{
     background: rgba(0,0,0,0.35) !important;
-}</style></head><body class="blogindex-template"><style>/* 移除主題預設的頂部間距，讓 Hero 靠近選單 */
-.main-content {
+}</style></head><body class="blogindex-template"><style>/* 強制消除內容區塊上方的橘色預設邊距 */
+.content__entry {
     margin-top: 0 !important;
     padding-top: 0 !important;
 }
+
+/* 針對 TechNews 主題的特定容器調整，確保 Hero 頂到最上方 */
+.main-content, 
+main, 
+article.content {
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+}    
 
 /* 滿版 Hero 容器 */
 .vscan-hero-full {
@@ -24,6 +32,7 @@
     margin-left: -50vw !important;
     margin-right: -50vw !important;
     height: 450px;
+    margin-top: 0 !important; /* 確保頂部無間距 */
     display: flex;
     justify-content: center;
     align-items: center;

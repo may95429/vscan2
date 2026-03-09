@@ -295,6 +295,49 @@ article.content {
     height: 350px !important;    
     object-fit: cover !important; /* 確保圖片不變形並填滿空間 */
     display: block !important;
+}</style><style>/* 針對最新消息頁面的容器重置 */
+.blogindex-template .content__entry {
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+}
+
+/* 利用偽元素生成滿版 Hero 圖片 */
+.blogindex-template main::before {
+    content: "";
+    display: block;
+    width: 100vw;
+    height: 450px;
+    background-image: url('../media/files/damian-zaleski-843.webp'); /* 請確認圖片路徑 */
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
+    z-index: 1;
+}
+
+/* 利用偽元素生成「最新消息」標題文字 */
+.blogindex-template main::after {
+    content: "最新消息";
+    display: block;
+    position: absolute;
+    top: 225px; /* (Hero高度450px / 2) */
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #333 !important;
+    font-size: 2rem;
+    font-weight: bold;
+    letter-spacing: 8px;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+    z-index: 2;
+}
+
+/* 隱藏原本頁面中重複的 "Insights and Updates" 標題 */
+.blogindex-template .content__entry > h1,
+.blogindex-template .content__entry > p {
+    display: none !important;
 }</style><header class="top js-header"><a class="logo" href="https://may95429.github.io/vscan2/"><img src="https://may95429.github.io/vscan2/media/website/v-scan-01-2.png" alt="vscan2" width="137" height="49"></a><nav class="navbar js-navbar"><button class="navbar__toggle js-toggle" aria-label="Menu" aria-haspopup="true" aria-expanded="false"><span class="navbar__toggle-box"><span class="navbar__toggle-inner">Menu</span></span></button><ul class="navbar__menu"><li><a href="https://may95429.github.io/vscan2/" target="_self">VSCAN</a></li><li class="has-submenu"><a href="https://may95429.github.io/vscan2/website-security/" target="_self" aria-haspopup="true">服務內容</a><ul class="navbar__submenu level-2" aria-hidden="true"><li><a href="https://may95429.github.io/vscan2/website-security/" target="_self">網站弱點掃描</a></li><li><a href="https://may95429.github.io/vscan2/program-security/" target="_self">程式碼弱點掃描</a></li></ul></li><li><a href="https://may95429.github.io/vscan2/blog/" target="_self">最新消息</a></li><li><a href="https://may95429.github.io/vscan2/contact/" target="_self">關於我們</a></li></ul></nav></header><main class="page page--tags"><div class="hero hero--noimage"><header class="hero__content"><div class="wrapper"><h1>Tags</h1><p class="page__desc">Collection of all 5 tags</p></div></header></div><div class="wrapper"><ul class="feed feed--grid"><li class="feed__item"><div class="feed__content"><h2 class="h3"><a href="https://may95429.github.io/vscan2/tags/cross-site-scripting/">Cross-Site Scripting</a></h2><p>Featuring 3 posts</p></div></li><li class="feed__item"><div class="feed__content"><h2 class="h3"><a href="https://may95429.github.io/vscan2/tags/csrf/">CSRF</a></h2><p>Featuring 2 posts</p></div></li><li class="feed__item"><div class="feed__content"><h2 class="h3"><a href="https://may95429.github.io/vscan2/tags/http-header/">HTTP Header</a></h2><p>Featuring 3 posts</p></div></li><li class="feed__item"><div class="feed__content"><h2 class="h3"><a href="https://may95429.github.io/vscan2/tags/injection/">Injection</a></h2><p>Featuring 3 posts</p></div></li><li class="feed__item"><div class="feed__content"><h2 class="h3"><a href="https://may95429.github.io/vscan2/tags/sql-injection/">SQL injection</a></h2><p>Featuring 2 posts</p></div></li></ul></div></main><footer class="footer"><div class="wrapper"><div class="footer__copyright">Powered by Publii</div><button id="backToTop" class="footer__bttop" aria-label="Back to top" title="Back to top"><svg width="20" height="20"><use xlink:href="https://may95429.github.io/vscan2/assets/svg/svg-map.svg#toparrow"/></svg></button></div></footer><script defer="defer" src="https://may95429.github.io/vscan2/assets/js/scripts.min.js?v=d0fc1030089a37f93a2d51bf6d07565c"></script><script>window.publiiThemeMenuConfig={mobileMenuMode:'sidebar',animationSpeed:300,submenuWidth: 'auto',doubleClickTime:500,mobileMenuExpandableSubmenus:true,relatedContainerForOverlayMenuSelector:'.top'};</script><script>var images = document.querySelectorAll('img[loading]');
         for (var i = 0; i < images.length; i++) {
             if (images[i].complete) {

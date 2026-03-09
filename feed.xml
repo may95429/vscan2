@@ -65,7 +65,7 @@
         <updated>2018-02-28T22:40:16+08:00</updated>
             <summary type="html">
                 <![CDATA[
-                    Cross-Site Scripting (XSS) 對網站而言，是一個大麻煩，不只是其弱點容易被發現與使用，被利用後所造成的後果更是無法預期! 現今幾乎所有的網站都會使用到 Javascript，很少純粹使用 HTML 語言，這導致使用者必須強迫接受 script 指令，在這個前提下，XSS 就是利用用戶端執行 script 時，埋入惡意程式，進而掌握機密資訊或後門，來達成竊取身份或遠端監控等目標。 Cross-Site Scripting 可以分為反射式(Reflected)、儲存式(Stored)： Reflected XSS 利用網站從存取可從外部修改的參數時，未經驗證而被埋入惡意語法，通常是利用可供輸入的欄位表單或可經proxy 修改的參數等功能，埋入惡意&hellip;
+                    Cross-Site Scripting (XSS) 對網站而言，是一個大麻煩，不只是其弱點容易被發現與使用，被利用後所造成的後果更是無法預期! 現今幾乎所有的網站都會使用到 Javascript，很少純粹使用 HTML 語言，這導致使用者必須強迫接受 script 指令，在這個前提下，XSS&hellip;
                 ]]>
             </summary>
         <content type="html">
@@ -123,7 +123,7 @@
         <updated>2017-11-15T21:37:38+08:00</updated>
             <summary type="html">
                 <![CDATA[
-                    SQL Injection 蟬聯 OWASP TOP 10 冠軍寶座從2013年版到最新的2017年版，可見其造成的傷害及普遍性之高，畢竟開發人員在將外部參數丟入 SQL 命令列時，為了方便就直接帶入，省略了過濾或用參數化的方式，相信有寫過串接 Database 的網站開發人員都會有的經驗。 SQL Injection 為透過外部使用者的輸入或可供改造的參數，未經驗證就帶入 SQL 相關指令被執行，導致跳脫原先預期的行為，變成攻擊者想要的行為。攻擊行為可利用 SQL 的指令如 SELECT、UPDATE 或&hellip;
+                    SQL Injection 蟬聯 OWASP TOP 10 冠軍寶座從2013年版到最新的2017年版，可見其造成的傷害及普遍性之高，畢竟開發人員在將外部參數丟入 SQL 命令列時，為了方便就直接帶入，省略了過濾或用參數化的方式，相信有寫過串接 Database&hellip;
                 ]]>
             </summary>
         <content type="html">
@@ -160,7 +160,7 @@
         <updated>2017-06-15T23:05:21+08:00</updated>
             <summary type="html">
                 <![CDATA[
-                    Injection Attack (注入式攻擊)為一種利用外部不被信任的輸入來源，未經驗證就被直接帶入後端處理，導致利用跳脫字元或編碼等方式造成攻擊字串被執行，進而發生無法預期行為，更由於其普遍性導致網路上有多種工具可協助進行攻擊，不需要高深技巧，可想而知其嚴重性！ 常見的 Injection attack SQL injection 及 XSS 更是蟬聯 OWASP TOP 10 多年，可見其造成的傷害及普遍性之高，畢竟開發人員在將外部參數丟入 SQL 命令列時，為了方便時常就直接帶入，省略了過濾或參數化等方式，相信有寫過串接 Database 的網站開發人員都會有的經驗吧! CRLF&hellip;
+                    Injection Attack (注入式攻擊)為一種利用外部不被信任的輸入來源，未經驗證就被直接帶入後端處理，導致利用跳脫字元或編碼等方式造成攻擊字串被執行，進而發生無法預期行為，更由於其普遍性導致網路上有多種工具可協助進行攻擊，不需要高深技巧，可想而知其嚴重性！ 常見的 Injection attack SQL injection 及 XSS&hellip;
                 ]]>
             </summary>
         <content type="html">
@@ -195,7 +195,7 @@
         <updated>2017-03-30T22:20:12+08:00</updated>
             <summary type="html">
                 <![CDATA[
-                    HTTP Header 範例 HTTP Header 可視為網站與客戶在連線時的橋溝通梁，也就是遵照 HTTP 的協議，利用 Server 端的參數來告知客戶端瀏覽器需遵守其遊戲規則，你才能跟我進行連線溝通與確認是否繼續進行下一步動作，所以當客戶端發出需求時，Server 端可藉由回應來確認連線的安全性需求。 近來跟客戶討論網站安全性時，常會遇到程式碼修補上的困難，不外乎還需要開發人員的調整及測試時間等問題，其實可以先進行 HTTP Header 的安全性設定。 就如 OWASP TOP 10 與&hellip;
+                    HTTP Header 範例 HTTP Header 可視為網站與客戶在連線時的橋溝通梁，也就是遵照 HTTP 的協議，利用 Server 端的參數來告知客戶端瀏覽器需遵守其遊戲規則，你才能跟我進行連線溝通與確認是否繼續進行下一步動作，所以當客戶端發出需求時，Server&hellip;
                 ]]>
             </summary>
         <content type="html">

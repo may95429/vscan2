@@ -9,62 +9,90 @@
 
 .vscan-hero__overlay{
     background: rgba(0,0,0,0.35) !important;
-}</style></head><body class="page-template"><style>/* 1) Page / Post：直接隱藏 sidebar */
-  body.page-template .sidebar,
-  body.post-template .sidebar{
-    display: none !important;
-  }
+}</style></head><body class="page-template"><style>/* 1. Hero 置中修正 */
+.vscan-hero {
+    position: relative;
+    width: 100%;
+    height: 400px;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 60px;
+}
 
-  /* 2) Page / Post：把兩欄 grid 改成一欄，避免主欄卡在第2欄造成左邊大留白 */
-  body.page-template .main-content,
-  body.post-template .main-content{
-    grid-template-columns: 1fr !important;
-    grid-column-gap: 0 !important;
-    max-width: 100% !important; /* 減少左右邊距 */
-    margin-left: auto !important;
-    margin-right: auto !important;
-    padding-left: 20px !important;
-    padding-right: 20px !important;
-  }
-
-  /* 3) Page / Post：主內容強制吃滿整列（覆蓋 theme 在大螢幕時給的 grid-column: 2/3） */
-  body.page-template main,
-  body.post-template main{
-    grid-column: 1 / -1 !important;
-    max-width: 100% !important;
-    margin: 0 auto !important;
-  }
-
-  /* 4) Page / Post：把內容區塊可能被 theme 加的左右 margin 清掉（避免看起來又偏） */
-  body.page-template .content,
-  body.post-template .content,
-  body.page-template .content__entry,
-  body.post-template .content__entry{
-    margin-left: 0 !important;
-    margin-right: 0 !important;
-  }
-
-  /* 5) Page / Post：footer 強制回到正常全寬、不要被當成側欄寬度、也不要跑到右邊 */
-  body.page-template .footer,
-  body.post-template .footer{
+.vscan-hero__bg {
+    position: absolute;
     width: 100% !important;
-    max-width: none !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    z-index: 1;
+}
+
+.vscan-hero__overlay {
+    position: absolute;
+    z-index: 2;
+    background: rgba(255, 255, 255, 0.6); /* 半透明遮罩 */
+    padding: 20px 60px;
+    border-radius: 4px;
+}
+
+.vscan-hero__title {
+    position: relative;
+    z-index: 3;
     margin: 0 !important;
-    grid-column: 1 / -1 !important;
-    clear: both;
-  }
+    color: #333 !important;
+    font-size: 2.5rem !important;
+    font-weight: bold !important;
+    letter-spacing: 4px;
+}
 
-  /* 6) （保險）如果 TechNews 用 CSS 變數控制欄寬，Page / Post 也一起歸零 */
-  body.page-template,
-  body.post-template{
-    --sidebar-width: 0;
-    --main-col-width: 100%;
-  }
+/* 2. 左圖右文佈局 (關鍵) */
+.vscan-about-split {
+    display: flex;
+    max-width: 1100px;
+    margin: 0 auto 80px auto;
+    align-items: center;
+    gap: 50px; /* 圖文間距 */
+    padding: 0 20px;
+}
 
+.vscan-about-image {
+    flex: 1; /* 佔一半寬度 */
+}
 
-  .main-content{
-      margin-top：0px !important;
-  }</style><style>/*網站弱點服務*/
+.vscan-about-image img {
+    width: 100% !important;
+    border-radius: 8px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+.vscan-about-content {
+    flex: 1; /* 佔一半寬度 */
+    text-align: left;
+    line-height: 1.8;
+    color: #444;
+    font-size: 1.1rem;
+}
+
+/* 3. 表單區塊距離調整 */
+.vscan-form-wrapper {
+    max-width: 800px;
+    margin: 0 auto 100px auto;
+    background: #f9f9f9;
+    padding: 40px;
+    border-radius: 12px;
+}
+
+/* 行動裝置適應：變回上下排列 */
+@media (max-width: 768px) {
+    .vscan-about-split {
+        flex-direction: column;
+        text-align: center;
+    }
+    .vscan-hero { height: 250px; }
+    .vscan-hero__title { font-size: 1.8rem !important; }
+}</style><style>/*網站弱點服務*/
 .service-grid {
     display: grid !important;  /* 強制設定 grid */
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)) !important; /* 設定自動調整列數 */

@@ -9,19 +9,30 @@
 
 .vscan-hero__overlay{
     background: rgba(0,0,0,0.35) !important;
-}</style></head><body class="tag-template"><style>/* 1. Hero 置中修正 */
-.vscan-hero {
+}</style></head><body class="tag-template"><style>/* 移除主題預設的頂部間距，讓 Hero 靠近選單 */
+.main-content {
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+}
+
+/* 滿版 Hero 容器 */
+.vscan-hero-full {
     position: relative;
-    width: 100%;
-    height: 400px;
-    overflow: hidden;
+    width: 100vw !important; /* 100% 視窗寬度 */
+    left: 50% !important;
+    right: 50% !important;
+    margin-left: -50vw !important;
+    margin-right: -50vw !important;
+    height: 450px;
     display: flex;
     justify-content: center;
     align-items: center;
     margin-bottom: 60px;
+    overflow: hidden;
 }
 
-.vscan-hero__bg {
+/* 滿版圖片設定 */
+.vscan-hero__img {
     position: absolute;
     width: 100% !important;
     height: 100% !important;
@@ -29,69 +40,47 @@
     z-index: 1;
 }
 
-.vscan-hero__overlay {
-    position: absolute;
-    z-index: 2;
-    background: rgba(255, 255, 255, 0.6); /* 半透明遮罩 */
-    padding: 20px 60px;
-    border-radius: 4px;
-}
-
-.vscan-hero__title {
+/* 移除 Overlay，文字直接置中 */
+.vscan-hero__text {
     position: relative;
-    z-index: 3;
-    margin: 0 !important;
-    color: #333 !important;
-    font-size: 2.5rem !important;
+    z-index: 2;
+    color: #333 !important; /* 如果背景圖太亮，可改為 #000 或增加文字陰影 */
+    font-size: 3.5rem !important;
     font-weight: bold !important;
-    letter-spacing: 4px;
+    margin: 0 !important;
+    letter-spacing: 8px;
+    text-shadow: 0 0 15px rgba(255, 255, 255, 0.8); /* 增加輕微陰影確保在淺色圖上清晰 */
 }
 
-/* 2. 左圖右文佈局 (關鍵) */
-.vscan-about-split {
-    display: flex;
+/* 內容區塊限制寬度 */
+.vscan-content-container {
     max-width: 1100px;
-    margin: 0 auto 80px auto;
-    align-items: center;
-    gap: 50px; /* 圖文間距 */
+    margin: 0 auto;
     padding: 0 20px;
 }
 
-.vscan-about-image {
-    flex: 1; /* 佔一半寬度 */
+/* 左圖右文 Flex 佈局 */
+.vscan-about-split {
+    display: flex;
+    align-items: center;
+    gap: 60px;
+    margin-bottom: 80px;
+}
+
+.vscan-about-image, .vscan-about-content {
+    flex: 1;
 }
 
 .vscan-about-image img {
     width: 100% !important;
-    border-radius: 8px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    border-radius: 4px;
 }
 
-.vscan-about-content {
-    flex: 1; /* 佔一半寬度 */
-    text-align: left;
-    line-height: 1.8;
-    color: #444;
-    font-size: 1.1rem;
-}
-
-/* 3. 表單區塊距離調整 */
-.vscan-form-wrapper {
-    max-width: 800px;
-    margin: 0 auto 100px auto;
-    background: #f9f9f9;
-    padding: 40px;
-    border-radius: 12px;
-}
-
-/* 行動裝置適應：變回上下排列 */
+/* 手機版縮放 */
 @media (max-width: 768px) {
-    .vscan-about-split {
-        flex-direction: column;
-        text-align: center;
-    }
-    .vscan-hero { height: 250px; }
-    .vscan-hero__title { font-size: 1.8rem !important; }
+    .vscan-hero-full { height: 300px; }
+    .vscan-hero__text { font-size: 2.2rem !important; }
+    .vscan-about-split { flex-direction: column; text-align: center; }
 }</style><style>/*網站弱點服務*/
 .service-grid {
     display: grid !important;  /* 強制設定 grid */

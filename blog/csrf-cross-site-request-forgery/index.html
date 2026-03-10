@@ -60,7 +60,7 @@ article.content {
     font-size: 2rem !important;
     font-weight: bold !important;
     margin: 0 !important;
-    letter-spacing: 8px;
+    letter-spacing: 12px;
     text-shadow: 0 0 15px rgba(255, 255, 255, 0.8); /* 增加輕微陰影確保在淺色圖上清晰 */
 }
 .vscan-hero__text__white {
@@ -70,7 +70,7 @@ article.content {
  font-size: 2rem !important;
  font-weight: bold !important;
  margin: 0 !important;
- letter-spacing: 8px;   
+ letter-spacing: 12px;   
 }
 
 
@@ -99,10 +99,21 @@ article.content {
 }
 
 /* 手機版縮放 */
-@media (max-width: 768px) {
+@media (max-width: 767px) {
     .vscan-hero-full { height: 300px; }
-    .vscan-hero__text { font-size: 1.4rem !important; }
-    .vscan-about-split { flex-direction: column; text-align: center; }
+    .vscan-hero__text { font-size: 1.4rem !important; 
+    font-weight: bold !important;
+ 	letter-spacing: 8px;   
+    }
+   
+    .vscan-hero__text__white {
+ 	font-size: 1.4rem !important;
+ 	font-weight: bold !important;
+ 	letter-spacing: 8px;   
+	}
+     .vscan-about-split {
+    flex-direction: column; 		
+    text-align: center; }
 }</style><style>/*網站弱點服務*/
 /*3張圖片左右左*/
     /* 容器設定 */

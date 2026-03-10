@@ -445,6 +445,33 @@ article.content {
     .blogindex-template .feed__item {
         width: 100% !important;
     }
+}</style><style>/*post的圖片置中*/
+    /* 1. 強制針對帶有置中類別的 figure 進行校準 */
+.post__entry figure.align-center,
+.post__entry .align-center {
+    display: block !important;
+    text-align: center !important; /* 確保內部的 img 標籤置中 */
+    margin-left: auto !important;
+    margin-right: auto !important;
+    width: 100% !important; /* 確保容器撐滿，讓 text-align 生效 */
+}
+
+/* 2. 確保 figure 內部的圖片與圖說 (figcaption) 同步置中 */
+.post__entry figure.align-center img {
+    display: inline-block !important; /* 配合 text-align: center 使用 */
+    margin: 0 auto !important;
+    float: none !important; /* 移除任何可能的浮動設定 */
+}
+
+.post__entry figure.align-center figcaption {
+    text-align: center !important;
+    display: block !important;
+    width: 100% !important;
+}
+
+/* 3. 解決特定主題可能存在的 Flex 佈局干擾 */
+.post__entry {
+    display: block !important; /* 確保主文章區域不是 flex 佈局導致圖片偏移 */
 }</style><header class="top js-header"><a class="logo" href="https://may95429.github.io/vscan2/"><img src="https://may95429.github.io/vscan2/media/website/v-scan-01-2.png" alt="vscan2" width="137" height="49"></a><nav class="navbar js-navbar"><button class="navbar__toggle js-toggle" aria-label="Menu" aria-haspopup="true" aria-expanded="false"><span class="navbar__toggle-box"><span class="navbar__toggle-inner">Menu</span></span></button><ul class="navbar__menu"><li><a href="https://may95429.github.io/vscan2/" target="_self">VSCAN</a></li><li class="has-submenu"><a href="https://may95429.github.io/vscan2/website-security/" target="_self" aria-haspopup="true">服務內容</a><ul class="navbar__submenu level-2" aria-hidden="true"><li><a href="https://may95429.github.io/vscan2/website-security/" target="_self">網站弱點掃描</a></li><li><a href="https://may95429.github.io/vscan2/program-security/" target="_self">程式碼弱點掃描</a></li></ul></li><li><a href="https://may95429.github.io/vscan2/blog/" target="_self">最新消息</a></li><li class="active"><a href="https://may95429.github.io/vscan2/contact/" target="_self">關於我們</a></li></ul></nav></header><main class="page"><article class="content"><div class="hero hero--noimage"><header class="hero__content"><div class="wrapper"><h1>關於我們</h1></div></header></div><div class="entry-wrapper content__entry"><div class="vscan-full-width-wrapper"><section class="vscan-hero-full"><figure class="vscan-hero__img"><img loading="lazy" src="../media/files/jeshoots-com-219386.webp" alt="關於我們 VSCAN" data-is-external-image="true"></figure><h3 class="vscan-hero__text">關於我們</h3></section><div class="vscan-content-container"><div class="vscan-about-split"><div class="vscan-about-image"><img loading="lazy" src="../media/files/about.webp" alt="VSCAN Core" data-is-external-image="true"></div><div class="vscan-about-content"><p>VSCAN 為專注於檢測網站安全性的資安公司，提供網站弱點掃描與程式碼弱點掃描服務，藉由安全檢測協助調整風險漏洞，期望網站提供服務的同時，能兼顧其安全性，避免發生駭客攻擊事件導致名譽受損。</p><p>公司服務皆由具資安專長顧問進行，長年輔導企業的資安強化與檢視，從網站伺服器、網站程式碼、以及各種環境架構等方向檢視資安漏洞，並協助調整為更安全及更值得客戶信賴的網站。</p></div></div><div class="vscan-form-section"><div class="vscan-intro-text">如有任何問題，歡迎寄信至 <a href="mailto:service@vscan.com.tw" class="vscan-email-link">service@vscan.com.tw</a> 或是填寫下面表單，我們將盡快為您回覆！</div><form id="vscan-contact-form"><div class="vscan-field-group"><label class="vscan-label">您的名稱 （必填）</label> <input type="text" name="user_name" class="vscan-input-blue" required=""></div><div class="vscan-field-group"><label class="vscan-label">您的電子郵件 （必填）</label> <input type="email" name="user_email" class="vscan-input-blue" required=""></div><div class="vscan-field-group"><label class="vscan-label">主旨</label> <input type="text" name="subject" class="vscan-input-blue"></div><div class="vscan-field-group"><label class="vscan-label">您的訊息</label> <textarea class="vscan-textarea-blue" style="height: 150px;" name="message" required=""></textarea></div><div style="text-align: center;"><button id="submit-btn" class="vscan-submit-btn" type="submit">傳送</button></div></form><div id="form-status" style="margin-top: 20px; text-align: center; font-weight: bold;"></div></div></div></div></div></article></main><footer class="footer"><div class="wrapper"><div class="footer__copyright"><p>Powered by Publii</p></div><button id="backToTop" class="footer__bttop" aria-label="Back to top" title="Back to top"><svg width="20" height="20"><use xlink:href="https://may95429.github.io/vscan2/assets/svg/svg-map.svg#toparrow"/></svg></button></div></footer><script defer="defer" src="https://may95429.github.io/vscan2/assets/js/scripts.min.js?v=d0fc1030089a37f93a2d51bf6d07565c"></script><script>window.publiiThemeMenuConfig={mobileMenuMode:'sidebar',animationSpeed:300,submenuWidth: 'auto',doubleClickTime:500,mobileMenuExpandableSubmenus:true,relatedContainerForOverlayMenuSelector:'.top'};</script><script>var images = document.querySelectorAll('img[loading]');
         for (var i = 0; i < images.length; i++) {
             if (images[i].complete) {

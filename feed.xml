@@ -3,7 +3,7 @@
     <title>vscan2</title>
     <link href="https://may95429.github.io/vscan2/feed.xml" rel="self" />
     <link href="https://may95429.github.io/vscan2" />
-    <updated>2026-03-10T09:42:14+08:00</updated>
+    <updated>2026-03-10T10:40:51+08:00</updated>
     <author>
         <name>vscan</name>
     </author>
@@ -20,12 +20,14 @@
         <updated>2018-05-03T18:03:47+08:00</updated>
             <summary type="html">
                 <![CDATA[
-                    CSRF 為一種類似詐騙的手法，藉由偽造的第三方網站內容誘騙受害者連線，該受害者需已透過身分驗證拿到目標網站的 Session，導致在不知情狀況下，受害者開啟了偽造網站後觸發了對目標網站以受害者身分的連線要求。 該弱點導致攻擊者劫持受害者的 Session，等於攻擊者拿到了受害者的身分，並在不知情狀況下被操作未知行為，可能造成受害者的機敏資料洩漏或交易行為變更等後果。此攻擊行為與 XSS 不同的地方在於未利用 Script 取得受害者機密資訊，而是直接利用受害者發出的連線進行操作，因此除了 Cookie&hellip;
+                    <p>CSRF 為一種類似詐騙的手法，藉由偽造的第三方網站內容誘騙受害者連線，該受害者需已透過身分驗證拿到目標網站的 Session，導致在不知情狀況下，受害者開啟了偽造網站後觸發了對目標網站以受害者身分的連線要求。  </p>
+
                 ]]>
             </summary>
         <content type="html">
             <![CDATA[
                 <p>CSRF 為一種類似詐騙的手法，藉由偽造的第三方網站內容誘騙受害者連線，該受害者需已透過身分驗證拿到目標網站的 Session，導致在不知情狀況下，受害者開啟了偽造網站後觸發了對目標網站以受害者身分的連線要求。  </p>
+
 <p>該弱點導致攻擊者劫持受害者的 Session，等於攻擊者拿到了受害者的身分，並在不知情狀況下被操作未知行為，可能造成受害者的機敏資料洩漏或交易行為變更等後果。此攻擊行為與 <a href="https://may95429.github.io/vscan2/blog/cross-site-scripting/" target="_blank" rel="noopener noreferrer">XSS</a> 不同的地方在於未利用 Script 取得受害者機密資訊，而是直接利用受害者發出的連線進行操作，因此除了 Cookie 的保護外，也必須對機敏內容的連線做二次驗證，採用不信任的方式檢查。  </p>
 <figure class="post__image size-full wp-image-2483 post__image--center"><img loading="lazy" src="https://may95429.github.io/vscan2/media/posts/5/csrf.jpg" alt="CSRF" width="592" height="309" sizes="(max-width: 1920px) 100vw, 1920px" srcset="https://may95429.github.io/vscan2/media/posts/5/responsive/csrf-xs.jpg 640w ,https://may95429.github.io/vscan2/media/posts/5/responsive/csrf-sm.jpg 768w ,https://may95429.github.io/vscan2/media/posts/5/responsive/csrf-md.jpg 1024w ,https://may95429.github.io/vscan2/media/posts/5/responsive/csrf-lg.jpg 1366w ,https://may95429.github.io/vscan2/media/posts/5/responsive/csrf-xl.jpg 1600w ,https://may95429.github.io/vscan2/media/posts/5/responsive/csrf-2xl.jpg 1920w">
 <figcaption></figcaption>
@@ -65,7 +67,7 @@
         <updated>2018-02-28T22:40:16+08:00</updated>
             <summary type="html">
                 <![CDATA[
-                    Cross-Site Scripting (XSS) 對網站而言，是一個大麻煩，不只是其弱點容易被發現與使用，被利用後所造成的後果更是無法預期! 現今幾乎所有的網站都會使用到 Javascript，很少純粹使用 HTML 語言，這導致使用者必須強迫接受 script 指令，在這個前提下，XSS&hellip;
+                    Cross-Site Scripting (XSS) 對網站而言，是一個大麻煩，不只是其弱點容易被發現與使用，被利用後所造成的後果更是無法預期! 現今幾乎所有的網站都會使用到 Javascript，很少純粹使用 HTML 語言，這導致使用者必須強迫接受 script 指令，在這個前提下，XSS 就是利用用戶端執行 script&hellip;
                 ]]>
             </summary>
         <content type="html">
@@ -123,7 +125,7 @@
         <updated>2017-11-15T21:37:38+08:00</updated>
             <summary type="html">
                 <![CDATA[
-                    SQL Injection 蟬聯 OWASP TOP 10 冠軍寶座從2013年版到最新的2017年版，可見其造成的傷害及普遍性之高，畢竟開發人員在將外部參數丟入 SQL 命令列時，為了方便就直接帶入，省略了過濾或用參數化的方式，相信有寫過串接 Database&hellip;
+                    SQL Injection 蟬聯 OWASP TOP 10 冠軍寶座從2013年版到最新的2017年版，可見其造成的傷害及普遍性之高，畢竟開發人員在將外部參數丟入 SQL 命令列時，為了方便就直接帶入，省略了過濾或用參數化的方式，相信有寫過串接 Database 的網站開發人員都會有的經驗。 SQL&hellip;
                 ]]>
             </summary>
         <content type="html">
@@ -160,7 +162,7 @@
         <updated>2017-06-15T23:05:21+08:00</updated>
             <summary type="html">
                 <![CDATA[
-                    Injection Attack (注入式攻擊)為一種利用外部不被信任的輸入來源，未經驗證就被直接帶入後端處理，導致利用跳脫字元或編碼等方式造成攻擊字串被執行，進而發生無法預期行為，更由於其普遍性導致網路上有多種工具可協助進行攻擊，不需要高深技巧，可想而知其嚴重性！ 常見的 Injection attack SQL injection 及 XSS&hellip;
+                    Injection Attack (注入式攻擊)為一種利用外部不被信任的輸入來源，未經驗證就被直接帶入後端處理，導致利用跳脫字元或編碼等方式造成攻擊字串被執行，進而發生無法預期行為，更由於其普遍性導致網路上有多種工具可協助進行攻擊，不需要高深技巧，可想而知其嚴重性！ 常見的 Injection attack SQL injection 及 XSS 更是蟬聯 OWASP&hellip;
                 ]]>
             </summary>
         <content type="html">
@@ -195,7 +197,7 @@
         <updated>2017-03-30T22:20:12+08:00</updated>
             <summary type="html">
                 <![CDATA[
-                    HTTP Header 範例 HTTP Header 可視為網站與客戶在連線時的橋溝通梁，也就是遵照 HTTP 的協議，利用 Server 端的參數來告知客戶端瀏覽器需遵守其遊戲規則，你才能跟我進行連線溝通與確認是否繼續進行下一步動作，所以當客戶端發出需求時，Server&hellip;
+                    HTTP Header 範例 HTTP Header 可視為網站與客戶在連線時的橋溝通梁，也就是遵照 HTTP 的協議，利用 Server 端的參數來告知客戶端瀏覽器需遵守其遊戲規則，你才能跟我進行連線溝通與確認是否繼續進行下一步動作，所以當客戶端發出需求時，Server 端可藉由回應來確認連線的安全性需求。 近來跟客戶討論網站安全性時，常會遇到程式碼修補上的困難，不外乎還需要開發人員的調整及測試時間等問題，其實可以先進行&hellip;
                 ]]>
             </summary>
         <content type="html">

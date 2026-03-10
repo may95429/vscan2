@@ -3,7 +3,7 @@
     <title>vscan2</title>
     <link href="https://may95429.github.io/vscan2/feed.xml" rel="self" />
     <link href="https://may95429.github.io/vscan2" />
-    <updated>2026-03-06T15:38:21+08:00</updated>
+    <updated>2026-03-10T09:29:34+08:00</updated>
     <author>
         <name>vscan</name>
     </author>
@@ -20,16 +20,16 @@
         <updated>2018-05-03T18:03:47+08:00</updated>
             <summary type="html">
                 <![CDATA[
-                    <p>CSRF 為一種類似詐騙的手法，藉由偽造的第三方網站內容誘騙受害者連線，該受害者需已透過身分驗證拿到目標網站的 Session，導致在不知情狀況下，受害者開啟了</p>
-
+                    CSRF 為一種類似詐騙的手法，藉由偽造的第三方網站內容誘騙受害者連線，該受害者需已透過身分驗證拿到目標網站的 Session，導致在不知情狀況下，受害者開啟了偽造網站後觸發了對目標網站以受害者身分的連線要求。 該弱點導致攻擊者劫持受害者的 Session，等於攻擊者拿到了受害者的身分，並在不知情狀況下被操作未知行為，可能造成受害者的機敏資料洩漏或交易行為變更等後果。此攻擊行為與 XSS 不同的地方在於未利用 Script 取得受害者機密資訊，而是直接利用受害者發出的連線進行操作，因此除了 Cookie&hellip;
                 ]]>
             </summary>
         <content type="html">
             <![CDATA[
-                <p>CSRF 為一種類似詐騙的手法，藉由偽造的第三方網站內容誘騙受害者連線，該受害者需已透過身分驗證拿到目標網站的 Session，導致在不知情狀況下，受害者開啟了</p>
-
-<p>偽造網站後觸發了對目標網站以受害者身分的連線要求。  </p>
-<p>該弱點導致攻擊者劫持受害者的 Session，等於攻擊者拿到了受害者的身分，並在不知情狀況下被操作未知行為，可能造成受害者的機敏資料洩漏或交易行為變更等後果。此攻擊行為與 <a href="http://vscan.local/blog/cross-site-scripting/" target="_blank" rel="noopener">XSS</a> 不同的地方在於未利用 Script 取得受害者機密資訊，而是直接利用受害者發出的連線進行操作，因此除了 Cookie 的保護外，也必須對機敏內容的連線做二次驗證，採用不信任的方式檢查。   <figure class="post__image post__image--center size-full wp-image-2483"><img loading="lazy"  src="https://may95429.github.io/vscan2/media/posts/5/csrf.jpg" alt="CSRF" width="592" height="309" sizes="(max-width: 1920px) 100vw, 1920px" srcset="https://may95429.github.io/vscan2/media/posts/5/responsive/csrf-xs.jpg 640w ,https://may95429.github.io/vscan2/media/posts/5/responsive/csrf-sm.jpg 768w ,https://may95429.github.io/vscan2/media/posts/5/responsive/csrf-md.jpg 1024w ,https://may95429.github.io/vscan2/media/posts/5/responsive/csrf-lg.jpg 1366w ,https://may95429.github.io/vscan2/media/posts/5/responsive/csrf-xl.jpg 1600w ,https://may95429.github.io/vscan2/media/posts/5/responsive/csrf-2xl.jpg 1920w"></figure>
+                <p>CSRF 為一種類似詐騙的手法，藉由偽造的第三方網站內容誘騙受害者連線，該受害者需已透過身分驗證拿到目標網站的 Session，導致在不知情狀況下，受害者開啟了偽造網站後觸發了對目標網站以受害者身分的連線要求。  </p>
+<p>該弱點導致攻擊者劫持受害者的 Session，等於攻擊者拿到了受害者的身分，並在不知情狀況下被操作未知行為，可能造成受害者的機敏資料洩漏或交易行為變更等後果。此攻擊行為與 <a href="http://vscan.local/blog/cross-site-scripting/" target="_blank" rel="noopener">XSS</a> 不同的地方在於未利用 Script 取得受害者機密資訊，而是直接利用受害者發出的連線進行操作，因此除了 Cookie 的保護外，也必須對機敏內容的連線做二次驗證，採用不信任的方式檢查。  </p>
+<figure class="post__image size-full wp-image-2483 post__image--center"><img loading="lazy" src="https://may95429.github.io/vscan2/media/posts/5/csrf.jpg" alt="CSRF" width="592" height="309" sizes="(max-width: 1920px) 100vw, 1920px" srcset="https://may95429.github.io/vscan2/media/posts/5/responsive/csrf-xs.jpg 640w ,https://may95429.github.io/vscan2/media/posts/5/responsive/csrf-sm.jpg 768w ,https://may95429.github.io/vscan2/media/posts/5/responsive/csrf-md.jpg 1024w ,https://may95429.github.io/vscan2/media/posts/5/responsive/csrf-lg.jpg 1366w ,https://may95429.github.io/vscan2/media/posts/5/responsive/csrf-xl.jpg 1600w ,https://may95429.github.io/vscan2/media/posts/5/responsive/csrf-2xl.jpg 1920w">
+<figcaption>Caption</figcaption>
+</figure>
 <p>Cross-Site Request Forgery   驗證的方向需能檢驗送出連線的使用者身分，以避免受害者在不知情狀況下被冒用身分，可參考方法如下，</p>
 <ul>
 <li>

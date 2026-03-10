@@ -384,6 +384,14 @@ article.content {
     text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
     z-index: 2;
 }
+
+  @media (max-width: 768px) {
+    .blogindex-template main::after {
+    	top: 225px !important; 
+    }
+    
+    }    
+    
 /* 1. 徹底隱藏 Blog 頁面原本的無圖 Hero 區塊（包含 Insights 字樣） */
 .blogindex-template .hero--noimage {
     display: none !important;

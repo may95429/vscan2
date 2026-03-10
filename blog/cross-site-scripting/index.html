@@ -456,9 +456,9 @@ article.content {
             }
         }</script><footer class="custom-footer"><div class="footer-container"><div class="footer-section"><h3>網站導覽</h3><ul><li><a href="/vscan2/">VSCAN</a></li><li><a href="/vscan2/blog/">最新消息</a></li><li><a href="/vscan2/program-security/">程式碼弱點掃描</a></li><li><a href="/vscan2/website-security/">網站弱點掃描</a></li><li><a href="/vscan2/contact/">關於我們</a></li></ul></div><div class="footer-section"><h3>最新文章</h3><ul><li><a href="/vscan2/blog/csrf-cross-site-request-forgery/">CSRF (Cross-Site Request Forgery)</a></li><li><a href="/vscan2/blog/cross-site-scripting/">Cross-Site Scripting</a></li><li><a href="/vscan2/blog/sql-injection/">SQL Injection</a></li></ul></div></div><div class="footer-bottom"><p>©VSCAN.com.tw</p></div></footer><style>/* 頁尾總容器 */
 .custom-footer {
-    background-color: #1a1a1a !important; /* 深黑色背景 */
+    background-color: #1a1a1a !important; 
     color: #ffffff !important;
-    padding: 40px 0 20px 0 !important;
+    padding: 60px 0 20px 0 !important; /* 增加頂部間距更有專業感 */
     font-size: 0.9rem !important;
 }
 
@@ -466,13 +466,16 @@ article.content {
     max-width: 1100px !important;
     margin: 0 auto !important;
     display: flex !important;
-    justify-content: space-around !important; /* 讓兩大區塊平均分配空間 */
+    /* 1. 調整分配方式，讓兩欄往左右兩側推開 */
+    justify-content: space-between !important; 
     flex-wrap: wrap !important;
-    padding: 0 20px !important;
+    padding: 0 40px !important; /* 增加左右內距 */
+    gap: 60px !important; /* 2. 設定兩欄之間的強制間距，防止底線相連 */
 }
 
 .footer-section {
-    flex: 1 !important;
+    /* 3. 取消 flex: 1，改用寬度控制，讓它們不再強行填滿中間空隙 */
+    flex: 0 1 calc(50% - 30px) !important; 
     min-width: 250px !important;
     margin-bottom: 30px !important;
 }
@@ -481,38 +484,47 @@ article.content {
     color: #ffffff !important;
     font-size: 1.1rem !important;
     margin-bottom: 25px !important;
-    position: relative !important;
     font-weight: bold !important;
+    /* 4. 增加標題下方的裝飾線 (可選，對齊圖二風格) */
+    padding-bottom: 10px !important;
+    border-bottom: 2px solid #4cd964 !important; /* VSCAN 品牌綠 */
+    display: inline-block !important; /* 讓底線跟著字長 */
 }
 
 .footer-section ul {
     list-style: none !important;
     padding: 0 !important;
-    margin: 0 !important;
+    margin: 20px 0 0 0 !important; /* 增加與標題的間距 */
 }
 
 .footer-section ul li {
-    padding: 10px 0 !important;
-    border-bottom: 1px solid #333 !important; /* 項目間的分隔線 */
+    padding: 12px 0 !important;
+    /* 5. 這裡的分隔線現在會隨著區塊分開而斷開 */
+    border-bottom: 1px solid #333 !important; 
+}
+
+/* 移除最後一個項目的底線，讓排版更乾淨 */
+.footer-section ul li:last-child {
+    border-bottom: none !important;
 }
 
 .footer-section ul li a {
-    color: #999 !important; /* 灰字，滑過變白 */
+    color: #999 !important;
     text-decoration: none !important;
     transition: 0.3s !important;
     display: block !important;
 }
 
 .footer-section ul li a:hover {
-    color: #ffffff !important;
-    padding-left: 5px !important; /* 滑過時稍微往右移的動態感 */
+    color: #4cd964 !important; /* 滑過時變成 VSCAN 品牌綠 */
+    padding-left: 8px !important;
 }
 
 /* 底部版權區塊 */
 .footer-bottom {
     text-align: center !important;
-    margin-top: 15px !important;
-    padding-top: 15px !important;
+    margin-top: 40px !important;
+    padding-top: 20px !important;
     border-top: 1px solid #333 !important;
-    color: #888 !important;
+    color: #666 !important;
 }</style></body></html>

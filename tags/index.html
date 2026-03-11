@@ -519,7 +519,6 @@ article.content {
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08) !important; /* 柔和陰影 */
     padding: 40px 30px !important;
     width: calc(33.33% - 20px) !important; /* 預設三欄佈局 */
-    min-width: 300px !important;
     transition: transform 0.3s ease, box-shadow 0.3s ease !important;
     display: flex !important;
     flex-direction: column !important;
@@ -553,10 +552,33 @@ article.content {
     display: none !important;
 }
 
-/* 響應式：手機版改為單欄 */
-@media (max-width: 768px) {
+/*平板版優化 (設定為 2 欄) */
+@media screen and (max-width: 768px) {
+    .blogindex-template .feed {
+        gap: 20px !important; /* 平板間距稍微縮小 */
+    }
     .blogindex-template .feed__item {
-        width: 100% !important;
+        /* 計算 2 欄寬度：(100% / 2) - (gap / 2) */
+        width: calc(50% - 10px) !important; 
+        padding: 30px 20px !important;
+    }
+}
+    
+/* 響應式：手機版改為單欄 */
+@media (max-width: 499px) {
+    .blogindex-template .feed {
+        gap: 15px !important; /* 縮小手機版的 gap */
+        padding: 30px 15px !important;
+    }
+    .blogindex-template .feed__item {
+        width: 100% !important; /* 手機版撐滿全寬 */
+        padding: 25px 20px !important; /* 縮小卡片內邊距增加空間 */
+    }
+    
+    .blogindex-template .feed__item h2 {
+        font-size: 1.3rem !important; /* 縮小標題字體 */
+    }
+		
     }
 }</style><header class="top js-header"><a class="logo" href="https://may95429.github.io/vscan2/"><img src="https://may95429.github.io/vscan2/media/website/v-scan-01-2.png" alt="vscan2" width="137" height="49"></a><nav class="navbar js-navbar"><button class="navbar__toggle js-toggle" aria-label="Menu" aria-haspopup="true" aria-expanded="false"><span class="navbar__toggle-box"><span class="navbar__toggle-inner">Menu</span></span></button><ul class="navbar__menu"><li><a href="https://may95429.github.io/vscan2/" target="_self">VSCAN</a></li><li class="has-submenu"><a href="https://may95429.github.io/vscan2/website-security/" target="_self" aria-haspopup="true">服務內容</a><ul class="navbar__submenu level-2" aria-hidden="true"><li><a href="https://may95429.github.io/vscan2/website-security/" target="_self">網站弱點掃描</a></li><li><a href="https://may95429.github.io/vscan2/program-security/" target="_self">程式碼弱點掃描</a></li></ul></li><li><a href="https://may95429.github.io/vscan2/blog/" target="_self">最新消息</a></li><li><a href="https://may95429.github.io/vscan2/contact/" target="_self">關於我們</a></li></ul></nav></header><main class="page page--tags"><div class="hero hero--noimage"><header class="hero__content"><div class="wrapper"><h1>Tags</h1><p class="page__desc">Collection of all 5 tags</p></div></header></div><div class="wrapper"><ul class="feed feed--grid"><li class="feed__item"><div class="feed__content"><h2 class="h3"><a href="https://may95429.github.io/vscan2/tags/cross-site-scripting/">Cross-Site Scripting</a></h2><p>Featuring 3 posts</p></div></li><li class="feed__item"><div class="feed__content"><h2 class="h3"><a href="https://may95429.github.io/vscan2/tags/csrf/">CSRF</a></h2><p>Featuring 2 posts</p></div></li><li class="feed__item"><div class="feed__content"><h2 class="h3"><a href="https://may95429.github.io/vscan2/tags/http-header/">HTTP Header</a></h2><p>Featuring 3 posts</p></div></li><li class="feed__item"><div class="feed__content"><h2 class="h3"><a href="https://may95429.github.io/vscan2/tags/injection/">Injection</a></h2><p>Featuring 3 posts</p></div></li><li class="feed__item"><div class="feed__content"><h2 class="h3"><a href="https://may95429.github.io/vscan2/tags/sql-injection/">SQL injection</a></h2><p>Featuring 2 posts</p></div></li></ul></div></main><footer class="footer"><div class="wrapper"><div class="footer__copyright"><p>Powered by Publii</p></div><button id="backToTop" class="footer__bttop" aria-label="Back to top" title="Back to top"><svg width="20" height="20"><use xlink:href="https://may95429.github.io/vscan2/assets/svg/svg-map.svg#toparrow"/></svg></button></div></footer><script defer="defer" src="https://may95429.github.io/vscan2/assets/js/scripts.min.js?v=d0fc1030089a37f93a2d51bf6d07565c"></script><script>window.publiiThemeMenuConfig={mobileMenuMode:'sidebar',animationSpeed:300,submenuWidth: 'auto',doubleClickTime:500,mobileMenuExpandableSubmenus:true,relatedContainerForOverlayMenuSelector:'.top'};</script><script>var images = document.querySelectorAll('img[loading]');
         for (var i = 0; i < images.length; i++) {

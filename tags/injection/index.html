@@ -519,7 +519,6 @@ article.content {
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08) !important; /* 柔和陰影 */
     padding: 40px 30px !important;
     width: calc(33.33% - 20px) !important; /* 預設三欄佈局 */
-    min-width: 300px !important;
     transition: transform 0.3s ease, box-shadow 0.3s ease !important;
     display: flex !important;
     flex-direction: column !important;
@@ -553,10 +552,33 @@ article.content {
     display: none !important;
 }
 
-/* 響應式：手機版改為單欄 */
-@media (max-width: 768px) {
+/*平板版優化 (設定為 2 欄) */
+@media screen and (max-width: 768px) {
+    .blogindex-template .feed {
+        gap: 20px !important; /* 平板間距稍微縮小 */
+    }
     .blogindex-template .feed__item {
-        width: 100% !important;
+        /* 計算 2 欄寬度：(100% / 2) - (gap / 2) */
+        width: calc(50% - 10px) !important; 
+        padding: 30px 20px !important;
+    }
+}
+    
+/* 響應式：手機版改為單欄 */
+@media (max-width: 499px) {
+    .blogindex-template .feed {
+        gap: 15px !important; /* 縮小手機版的 gap */
+        padding: 30px 15px !important;
+    }
+    .blogindex-template .feed__item {
+        width: 100% !important; /* 手機版撐滿全寬 */
+        padding: 25px 20px !important; /* 縮小卡片內邊距增加空間 */
+    }
+    
+    .blogindex-template .feed__item h2 {
+        font-size: 1.3rem !important; /* 縮小標題字體 */
+    }
+		
     }
 }</style><header class="top js-header"><a class="logo" href="https://may95429.github.io/vscan2/"><img src="https://may95429.github.io/vscan2/media/website/v-scan-01-2.png" alt="vscan2" width="137" height="49"></a><nav class="navbar js-navbar"><button class="navbar__toggle js-toggle" aria-label="Menu" aria-haspopup="true" aria-expanded="false"><span class="navbar__toggle-box"><span class="navbar__toggle-inner">Menu</span></span></button><ul class="navbar__menu"><li><a href="https://may95429.github.io/vscan2/" target="_self">VSCAN</a></li><li class="has-submenu"><a href="https://may95429.github.io/vscan2/website-security/" target="_self" aria-haspopup="true">服務內容</a><ul class="navbar__submenu level-2" aria-hidden="true"><li><a href="https://may95429.github.io/vscan2/website-security/" target="_self">網站弱點掃描</a></li><li><a href="https://may95429.github.io/vscan2/program-security/" target="_self">程式碼弱點掃描</a></li></ul></li><li><a href="https://may95429.github.io/vscan2/blog/" target="_self">最新消息</a></li><li><a href="https://may95429.github.io/vscan2/contact/" target="_self">關於我們</a></li></ul></nav></header><main class="page page--tag"><div class="hero hero--noimage"><header class="hero__content"><div class="wrapper"><h1>Injection <sup>(3)</sup></h1></div></header></div><div class="wrapper feed"><article class="feed__item"><div class="feed__content"><header><div class="feed__meta"><a href="https://may95429.github.io/vscan2/authors/vscan/" class="feed__author">vscan</a> <time datetime="2018-02-28T22:40" class="feed__date">二月 28, 2018</time></div><h2 class="feed__title"><a href="https://may95429.github.io/vscan2/blog/cross-site-scripting/">Cross-Site Scripting</a></h2></header><p>Cross-Site Scripting (XSS) 對網站而言，是一個大麻煩，不只是其弱點容易被發現與使用，被利用後所造成的後果更是無法預期! 現今幾乎所有的網站都會使用到 Javascript，很少純粹使用 HTML&hellip;</p><a href="https://may95429.github.io/vscan2/blog/cross-site-scripting/" class="readmore feed__readmore">Continue reading...</a></div></article><article class="feed__item"><div class="feed__content"><header><div class="feed__meta"><a href="https://may95429.github.io/vscan2/authors/vscan/" class="feed__author">vscan</a> <time datetime="2017-11-15T21:37" class="feed__date">十一月 15, 2017</time></div><h2 class="feed__title"><a href="https://may95429.github.io/vscan2/blog/sql-injection/">SQL Injection</a></h2></header><p>SQL Injection 蟬聯 OWASP TOP 10 冠軍寶座從2013年版到最新的2017年版，可見其造成的傷害及普遍性之高，畢竟開發人員在將外部參數丟入&hellip;</p><a href="https://may95429.github.io/vscan2/blog/sql-injection/" class="readmore feed__readmore">Continue reading...</a></div></article><article class="feed__item"><div class="feed__content"><header><div class="feed__meta"><a href="https://may95429.github.io/vscan2/authors/vscan/" class="feed__author">vscan</a> <time datetime="2017-06-15T23:05" class="feed__date">六月 15, 2017</time></div><h2 class="feed__title"><a href="https://may95429.github.io/vscan2/blog/injection-attack/">Injection Attack</a></h2></header><p>Injection Attack (注入式攻擊)為一種利用外部不被信任的輸入來源，未經驗證就被直接帶入後端處理，導致利用跳脫字元或編碼等方式造成攻擊字串被執行，進而發生無法預期行為，更由於其普遍性導致網路上有多種工具可協助進行攻擊，不需要高深技巧，可想而知其嚴重性！ 常見的 Injection attack SQL&hellip;</p><a href="https://may95429.github.io/vscan2/blog/injection-attack/" class="readmore feed__readmore">Continue reading...</a></div></article></div></main><footer class="footer"><div class="wrapper"><div class="footer__copyright"><p>Powered by Publii</p></div><button id="backToTop" class="footer__bttop" aria-label="Back to top" title="Back to top"><svg width="20" height="20"><use xlink:href="https://may95429.github.io/vscan2/assets/svg/svg-map.svg#toparrow"/></svg></button></div></footer><script defer="defer" src="https://may95429.github.io/vscan2/assets/js/scripts.min.js?v=d0fc1030089a37f93a2d51bf6d07565c"></script><script>window.publiiThemeMenuConfig={mobileMenuMode:'sidebar',animationSpeed:300,submenuWidth: 'auto',doubleClickTime:500,mobileMenuExpandableSubmenus:true,relatedContainerForOverlayMenuSelector:'.top'};</script><script>var images = document.querySelectorAll('img[loading]');
         for (var i = 0; i < images.length; i++) {

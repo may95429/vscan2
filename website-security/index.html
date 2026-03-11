@@ -308,14 +308,24 @@ article.content {
   }
 
   /* --- 5. 響應式微調 (RWD) --- */
-  @media (max-width: 767px) {
+  @media (max-width: 768px) {
     .vscan-about-container {
-      flex-direction: column !important; /* 讓圖片和文字垂直排列 */
-      gap: 20px !important;
+        display: flex !important;
+        align-items: center !important;
+        gap: 30px !important;
     }
+
     .vscan-about-image {
-      flex: 0 0 auto !important;
-      max-width: 85% !important;
+        /* 讓圖片佔比稍微增加，並透過 margin-left 往右推 */
+        flex: 0 0 55% !important; 
+        margin-left: 20px !important; 
+        order: 2; /* 如果您希望圖片在文字右邊，可以調整順序 */
+    }
+
+    .vscan-about-image img {
+        width: 100% !important; /* 讓圖片充滿 55% 的容器 */
+        max-width: 100% !important;
+        height: auto !important;
     }
     .vscan-about-text {
       font-size: 17px !important;
@@ -325,7 +335,30 @@ article.content {
     }
   }
 
-  @media (max-width: 480px) {
+  @media (max-width: 499px) {
+    .vscan-about-container {
+        flex-direction: column !important; /* 垂直排列 */
+        align-items: center !important;
+    }
+
+    .vscan-about-image {
+        flex: 0 0 auto !important;
+        width: 100% !important; /* 容器撐滿 */
+        max-width: 100% !important;
+        /* 關鍵：水平置中 */
+        display: flex !important;
+        justify-content: center !important;
+        margin: 0 auto 20px auto !important;
+    }
+
+    .vscan-about-image img {
+        /* 圖片放大到 95%，並確保置中 */
+        width: 95% !important; 
+        max-width: 95% !important;
+        height: auto !important;
+        margin: 0 auto !important;
+        border-radius: 8px !important;
+    }
     .vscan-submit-btn {
       width: 85%;
       padding: 12px 0 !important;

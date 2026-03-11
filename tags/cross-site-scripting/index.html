@@ -330,21 +330,47 @@ article.content {
       width: 85%;
       padding: 12px 0 !important;
     }
-  }</style><style>/* 1. 橢圓形圖片容器：處理置中與下方距離 */
+  }</style><style>/* 1.橢圓形圖片容器：負責裁切形狀 */
 .circular-image {
-    width: 100% !important;      /* 讓容器撐滿 */
-    max-width: 900px !important; /* 您希望「寬度再寬一點」，這裡從 800px 增加到 1000px */
-    margin: 30px auto 50px auto !important; /* 關鍵：0 auto 達成水平置中，50px 推開下方 grid 距離 */
+    width: 95% !important;        /* 手機版留一點邊距 */
+    max-width: 900px !important; 
+    margin: 40px auto !important; 
     overflow: hidden !important;
     display: block !important;
+    /* 關鍵：設定圓角達成橢圓形 */
+    border-radius: 100px !important;
 }
 
-/* 2. 圖片本體：處理形狀與比例 */
+/* 2. 圖片本體：自動適應高度 */
 .circular-image img {
     width: 100% !important;
-    height: 350px !important;    
-    object-fit: cover !important; /* 確保圖片不變形並填滿空間 */
+    height: auto !important;      /* 讓高度隨寬度縮放，避免被裁切 */
+    min-height: 200px !important; /* 確保在手機上不會太扁 */
+    max-height: 400px !important; /* 限制最大高度 */
+    object-fit: cover !important; 
     display: block !important;
+}
+    
+/* 3. 針對平板與手機的響應式調整 */
+@media screen and (max-width: 768px) {
+    .circular-image {
+        border-radius: 50px !important; /* 螢幕小時縮小圓角弧度，看起來更協調 */
+        margin: 20px auto 40px auto !important;
+    }
+    
+    .circular-image img {
+        height: 280px !important; /* 平板稍微降低高度 */
+    }
+}
+
+@media screen and (max-width: 499px) {
+    .circular-image {
+        border-radius: 30px !important; /* 手機版圓角 */
+    }
+    
+    .circular-image img {
+        height: 200px !important; /* 手機版降低高度，防止內容被過度截斷 */
+    }
 }</style><style>/*最新消息*/ 
   /* 針對最新消息頁面的容器重置 */
 .blogindex-template .content__entry {

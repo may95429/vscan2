@@ -3,7 +3,7 @@
     <title>vscan2</title>
     <link href="https://may95429.github.io/vscan2/feed.xml" rel="self" />
     <link href="https://may95429.github.io/vscan2" />
-    <updated>2026-03-11T22:59:09+08:00</updated>
+    <updated>2026-03-11T23:02:14+08:00</updated>
     <author>
         <name>vscan</name>
     </author>
@@ -204,10 +204,7 @@
         <updated>2017-03-30T22:20:12+08:00</updated>
             <summary type="html">
                 <![CDATA[
-                    <figure class="post__image wp-image-2340"><img loading="lazy"  title="HTTP Header" src="https://may95429.github.io/vscan2/media/posts/1/擷取.png" alt="HTTP Header to Google" width="509" height="312" sizes="(max-width: 1920px) 100vw, 1920px" srcset="https://may95429.github.io/vscan2/media/posts/1/responsive/擷取-xs.png 640w ,https://may95429.github.io/vscan2/media/posts/1/responsive/擷取-sm.png 768w ,https://may95429.github.io/vscan2/media/posts/1/responsive/擷取-md.png 1024w ,https://may95429.github.io/vscan2/media/posts/1/responsive/擷取-lg.png 1366w ,https://may95429.github.io/vscan2/media/posts/1/responsive/擷取-xl.png 1600w ,https://may95429.github.io/vscan2/media/posts/1/responsive/擷取-2xl.png 1920w"></figure>
-<p>HTTP Header 範例  </p>
-<p>HTTP Header 可視為網站與客戶在連線時的橋溝通梁，也就是遵照 HTTP 的協議，利用 Server 端的參數來告知客戶端瀏覽器需遵守其遊戲規則，你才能跟我進行連線溝通與確認是否繼續進行下一步動作，所以當客戶端發出需求時，Server 端可藉由回應來確認連線的安全性需求。</p>
-
+                    HTTP Header 範例 HTTP Header 可視為網站與客戶在連線時的橋溝通梁，也就是遵照 HTTP&hellip;
                 ]]>
             </summary>
         <content type="html">
@@ -215,7 +212,6 @@
                 <figure class="post__image wp-image-2340"><img loading="lazy"  title="HTTP Header" src="https://may95429.github.io/vscan2/media/posts/1/擷取.png" alt="HTTP Header to Google" width="509" height="312" sizes="(max-width: 1920px) 100vw, 1920px" srcset="https://may95429.github.io/vscan2/media/posts/1/responsive/擷取-xs.png 640w ,https://may95429.github.io/vscan2/media/posts/1/responsive/擷取-sm.png 768w ,https://may95429.github.io/vscan2/media/posts/1/responsive/擷取-md.png 1024w ,https://may95429.github.io/vscan2/media/posts/1/responsive/擷取-lg.png 1366w ,https://may95429.github.io/vscan2/media/posts/1/responsive/擷取-xl.png 1600w ,https://may95429.github.io/vscan2/media/posts/1/responsive/擷取-2xl.png 1920w"></figure>
 <p>HTTP Header 範例  </p>
 <p>HTTP Header 可視為網站與客戶在連線時的橋溝通梁，也就是遵照 HTTP 的協議，利用 Server 端的參數來告知客戶端瀏覽器需遵守其遊戲規則，你才能跟我進行連線溝通與確認是否繼續進行下一步動作，所以當客戶端發出需求時，Server 端可藉由回應來確認連線的安全性需求。</p>
-
 <p>近來跟客戶討論網站安全性時，常會遇到程式碼修補上的困難，不外乎還需要開發人員的調整及測試時間等問題，其實可以先進行 HTTP Header 的安全性設定。 就如 OWASP TOP 10 與 SANS/CWE TOP 25 所列弱點，常見的 <a href="https://may95429.github.io/vscan2/blog/cross-site-scripting/" target="_blank" rel="noopener noreferrer">XSS(Cross-Site Scripting)</a>與 CSRF(Cross-Site Requset Forgery)等弱點都可藉由調整 HTTP Header 來達成初步的防禦效果! OWASP 就有針對此發表了相關說明。</p>
 <p><strong>HTTP Header 安全設定</strong></p>
 <ul>

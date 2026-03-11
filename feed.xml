@@ -3,7 +3,7 @@
     <title>vscan2</title>
     <link href="https://may95429.github.io/vscan2/feed.xml" rel="self" />
     <link href="https://may95429.github.io/vscan2" />
-    <updated>2026-03-10T10:40:51+08:00</updated>
+    <updated>2026-03-11T22:59:09+08:00</updated>
     <author>
         <name>vscan</name>
     </author>
@@ -67,12 +67,15 @@
         <updated>2018-02-28T22:40:16+08:00</updated>
             <summary type="html">
                 <![CDATA[
-                    Cross-Site Scripting (XSS) 對網站而言，是一個大麻煩，不只是其弱點容易被發現與使用，被利用後所造成的後果更是無法預期! 現今幾乎所有的網站都會使用到 Javascript，很少純粹使用 HTML&hellip;
+                    <p>Cross-Site Scripting (XSS) 對網站而言，是一個大麻煩，不只是其弱點容易被發現與使用，被利用後所造成的後果更是無法預期! 現今幾乎所有的網站都會使用到 Javascript，很少純粹使用 HTML 語言，這導致使用者必須強迫接受 script 指令，在這個前提下，XSS 就是利用用戶端執行 script 時，埋入惡意程式，進而掌握機密資訊或後門，</p>
+
                 ]]>
             </summary>
         <content type="html">
             <![CDATA[
-                <p>Cross-Site Scripting (XSS) 對網站而言，是一個大麻煩，不只是其弱點容易被發現與使用，被利用後所造成的後果更是無法預期! 現今幾乎所有的網站都會使用到 Javascript，很少純粹使用 HTML 語言，這導致使用者必須強迫接受 script 指令，在這個前提下，XSS 就是利用用戶端執行 script 時，埋入惡意程式，進而掌握機密資訊或後門，來達成竊取身份或遠端監控等目標。  </p>
+                <p>Cross-Site Scripting (XSS) 對網站而言，是一個大麻煩，不只是其弱點容易被發現與使用，被利用後所造成的後果更是無法預期! 現今幾乎所有的網站都會使用到 Javascript，很少純粹使用 HTML 語言，這導致使用者必須強迫接受 script 指令，在這個前提下，XSS 就是利用用戶端執行 script 時，埋入惡意程式，進而掌握機密資訊或後門，</p>
+
+<p>來達成竊取身份或遠端監控等目標。  </p>
 <p>Cross-Site Scripting 可以分為反射式(Reflected)、儲存式(Stored)：</p>
 <ul>
 <li>
@@ -125,12 +128,14 @@
         <updated>2017-11-15T21:37:38+08:00</updated>
             <summary type="html">
                 <![CDATA[
-                    SQL Injection 蟬聯 OWASP TOP 10 冠軍寶座從2013年版到最新的2017年版，可見其造成的傷害及普遍性之高，畢竟開發人員在將外部參數丟入&hellip;
+                    <p>SQL Injection 蟬聯 OWASP TOP 10 冠軍寶座從2013年版到最新的2017年版，可見其造成的傷害及普遍性之高，畢竟開發人員在將外部參數丟入 SQL 命令列時，為了方便就直接帶入，省略了過濾或用參數化的方式，相信有寫過串接 Database 的網站開發人員都會有的經驗。</p>
+
                 ]]>
             </summary>
         <content type="html">
             <![CDATA[
                 <p>SQL Injection 蟬聯 OWASP TOP 10 冠軍寶座從2013年版到最新的2017年版，可見其造成的傷害及普遍性之高，畢竟開發人員在將外部參數丟入 SQL 命令列時，為了方便就直接帶入，省略了過濾或用參數化的方式，相信有寫過串接 Database 的網站開發人員都會有的經驗。</p>
+
 <p>SQL Injection 為透過外部使用者的輸入或可供改造的參數，未經驗證就帶入 SQL 相關指令被執行，導致跳脫原先預期的行為，變成攻擊者想要的行為。攻擊行為可利用 SQL 的指令如 SELECT、UPDATE 或 DELETE 等來造成資料庫非預期的行為，若執行權限又沒特別去做區分，等於將整個資料庫被外部任意存取與動作，甚至可用來執行指令碼，後果將難以彌補！  </p>
 <h4>SQL Injection 攻擊型態類型</h4>
 <ul>
@@ -162,12 +167,14 @@
         <updated>2017-06-15T23:05:21+08:00</updated>
             <summary type="html">
                 <![CDATA[
-                    Injection Attack (注入式攻擊)為一種利用外部不被信任的輸入來源，未經驗證就被直接帶入後端處理，導致利用跳脫字元或編碼等方式造成攻擊字串被執行，進而發生無法預期行為，更由於其普遍性導致網路上有多種工具可協助進行攻擊，不需要高深技巧，可想而知其嚴重性！ 常見的 Injection attack SQL&hellip;
+                    <p>Injection Attack (注入式攻擊)為一種利用外部不被信任的輸入來源，未經驗證就被直接帶入後端處理，導致利用跳脫字元或編碼等方式造成攻擊字串被執行，進而發生無法預期行為，更由於其普遍性導致網路上有多種工具可協助進行攻擊，不需要高深技巧，可想而知其嚴重性！  </p>
+
                 ]]>
             </summary>
         <content type="html">
             <![CDATA[
                 <p>Injection Attack (注入式攻擊)為一種利用外部不被信任的輸入來源，未經驗證就被直接帶入後端處理，導致利用跳脫字元或編碼等方式造成攻擊字串被執行，進而發生無法預期行為，更由於其普遍性導致網路上有多種工具可協助進行攻擊，不需要高深技巧，可想而知其嚴重性！  </p>
+
 <p><strong>常見的 Injection attack</strong></p>
 <ul>
 <li><strong><a href="https://may95429.github.io/vscan2/blog/sql-injection/" target="_blank" rel="noopener noreferrer"><span style="font-size: large;">SQL injection</span></a></strong></li>
@@ -197,7 +204,10 @@
         <updated>2017-03-30T22:20:12+08:00</updated>
             <summary type="html">
                 <![CDATA[
-                    HTTP Header 範例 HTTP Header 可視為網站與客戶在連線時的橋溝通梁，也就是遵照 HTTP&hellip;
+                    <figure class="post__image wp-image-2340"><img loading="lazy"  title="HTTP Header" src="https://may95429.github.io/vscan2/media/posts/1/擷取.png" alt="HTTP Header to Google" width="509" height="312" sizes="(max-width: 1920px) 100vw, 1920px" srcset="https://may95429.github.io/vscan2/media/posts/1/responsive/擷取-xs.png 640w ,https://may95429.github.io/vscan2/media/posts/1/responsive/擷取-sm.png 768w ,https://may95429.github.io/vscan2/media/posts/1/responsive/擷取-md.png 1024w ,https://may95429.github.io/vscan2/media/posts/1/responsive/擷取-lg.png 1366w ,https://may95429.github.io/vscan2/media/posts/1/responsive/擷取-xl.png 1600w ,https://may95429.github.io/vscan2/media/posts/1/responsive/擷取-2xl.png 1920w"></figure>
+<p>HTTP Header 範例  </p>
+<p>HTTP Header 可視為網站與客戶在連線時的橋溝通梁，也就是遵照 HTTP 的協議，利用 Server 端的參數來告知客戶端瀏覽器需遵守其遊戲規則，你才能跟我進行連線溝通與確認是否繼續進行下一步動作，所以當客戶端發出需求時，Server 端可藉由回應來確認連線的安全性需求。</p>
+
                 ]]>
             </summary>
         <content type="html">
@@ -205,6 +215,7 @@
                 <figure class="post__image wp-image-2340"><img loading="lazy"  title="HTTP Header" src="https://may95429.github.io/vscan2/media/posts/1/擷取.png" alt="HTTP Header to Google" width="509" height="312" sizes="(max-width: 1920px) 100vw, 1920px" srcset="https://may95429.github.io/vscan2/media/posts/1/responsive/擷取-xs.png 640w ,https://may95429.github.io/vscan2/media/posts/1/responsive/擷取-sm.png 768w ,https://may95429.github.io/vscan2/media/posts/1/responsive/擷取-md.png 1024w ,https://may95429.github.io/vscan2/media/posts/1/responsive/擷取-lg.png 1366w ,https://may95429.github.io/vscan2/media/posts/1/responsive/擷取-xl.png 1600w ,https://may95429.github.io/vscan2/media/posts/1/responsive/擷取-2xl.png 1920w"></figure>
 <p>HTTP Header 範例  </p>
 <p>HTTP Header 可視為網站與客戶在連線時的橋溝通梁，也就是遵照 HTTP 的協議，利用 Server 端的參數來告知客戶端瀏覽器需遵守其遊戲規則，你才能跟我進行連線溝通與確認是否繼續進行下一步動作，所以當客戶端發出需求時，Server 端可藉由回應來確認連線的安全性需求。</p>
+
 <p>近來跟客戶討論網站安全性時，常會遇到程式碼修補上的困難，不外乎還需要開發人員的調整及測試時間等問題，其實可以先進行 HTTP Header 的安全性設定。 就如 OWASP TOP 10 與 SANS/CWE TOP 25 所列弱點，常見的 <a href="https://may95429.github.io/vscan2/blog/cross-site-scripting/" target="_blank" rel="noopener noreferrer">XSS(Cross-Site Scripting)</a>與 CSRF(Cross-Site Requset Forgery)等弱點都可藉由調整 HTTP Header 來達成初步的防禦效果! OWASP 就有針對此發表了相關說明。</p>
 <p><strong>HTTP Header 安全設定</strong></p>
 <ul>
